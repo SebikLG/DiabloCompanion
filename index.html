@@ -1,231 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d0c0c">
 <title>Diablo Companion — S15</title>
 <style>
-:root{
-  --bg:#0d0c0c;
-  --line:#332b27;
-  --text:#f3eee9;
-  --muted:#a79b93;
-  --accent:#d97935;
-}
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:var(--bg);
-  overscroll-behavior:none;
-}
-body{
-  color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(circle at 80% -10%,rgba(217,121,53,.12),transparent 34%),var(--bg);
-}
-button{font:inherit}
-
-/* Cała aplikacja mieści się w widocznym viewportcie. Sam dokument się nie przewija. */
-.app{
-  width:100%;
-  height:100dvh;
-  min-height:100svh;
-  display:grid;
-  grid-template-rows:auto minmax(0,1fr) auto;
-  overflow:hidden;
-}
-
-/* GÓRA — zawsze zostaje na miejscu */
-.profile-switch{
-  min-width:0;
-  background:rgba(13,12,12,.99);
-  border-bottom:1px solid #302825;
-  padding:15px 14px;
-  z-index:5;
-}
-.profile-switch-inner{
-  width:100%;
-  max-width:760px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:10px;
-}
-.profilebtn{
-  min-width:0;
-  min-height:74px;
-  border:1px solid var(--line);
-  background:#151313;
-  color:#e3dad4;
-  border-radius:18px;
-  padding:12px 9px;
-  font-weight:900;
-  font-size:clamp(14px,3.9vw,18px);
-  line-height:1.15;
-  cursor:pointer;
-  white-space:normal;
-  overflow-wrap:anywhere;
-  text-align:center;
-}
-.profilebtn.active{
-  border-color:#c96e35;
-  background:#2a1d16;
-  color:#ffd2ad;
-  box-shadow:0 0 0 1px rgba(217,121,53,.18) inset;
-}
-
-/* ŚRODEK — jedyne miejsce, które może się pionowo przewijać */
-.content{
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  overscroll-behavior-y:contain;
-  -webkit-overflow-scrolling:touch;
-  background:transparent;
-}
-.profile{display:none}
-.profile.active{display:block}
-.view{display:none}
-.view.active{display:block}
-
-/* DÓŁ — stały w siatce aplikacji, nad paskiem gestów */
-.bottom-shell{
-  min-width:0;
-  background:rgba(13,12,12,.99);
-  border-top:1px solid #302825;
-  padding-bottom:max(30px,env(safe-area-inset-bottom));
-  z-index:5;
-}
-.bottomnav{
-  display:flex;
-  gap:5px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scrollbar-width:none;
-  padding:8px 8px 7px;
-}
-.bottomnav::-webkit-scrollbar{display:none}
-.navbtn{
-  flex:0 0 74px;
-  border:0;
-  background:transparent;
-  color:var(--muted);
-  border-radius:18px;
-  padding:10px 7px 9px;
-  font-size:.76rem;
-  cursor:pointer;
-}
-.navbtn b{
-  display:block;
-  font-size:1.22rem;
-  line-height:1.05;
-  margin-bottom:5px;
-}
-.navbtn.active{
-  background:#2b1e17;
-  color:#ffd0aa;
-}
-
-@media(min-width:760px){
-  .bottomnav{justify-content:center}
-  .navbtn{flex-basis:84px}
-}
+:root{--bg:#0d0c0c;--line:#332b27;--text:#f3eee9;--muted:#a79b93;--accent:#d97935}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);overscroll-behavior:none}
+body{color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at 80% -10%,rgba(217,121,53,.12),transparent 34%),var(--bg)}
+button{font:inherit}.app{width:100%;height:100dvh;min-height:100svh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+.profile-switch{min-width:0;background:rgba(13,12,12,.99);border-bottom:1px solid #302825;padding:15px 14px;z-index:5}
+.profile-switch-inner{width:100%;max-width:760px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.profilebtn{min-width:0;min-height:74px;border:1px solid var(--line);background:#151313;color:#e3dad4;border-radius:18px;padding:12px 9px;font-weight:900;font-size:clamp(14px,3.9vw,18px);line-height:1.15;cursor:pointer;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.profilebtn.active{border-color:#c96e35;background:#2a1d16;color:#ffd2ad;box-shadow:0 0 0 1px rgba(217,121,53,.18) inset}
+.content{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;padding:14px}
+.profile{display:none}.profile.active{display:block}.view{display:none}.view.active{display:block}
+.start-card{max-width:760px;margin:0 auto;background:#141212;border:1px solid #302825;border-radius:18px;padding:14px 12px 16px}
+.start-card h2{margin:0 0 13px;font-size:1rem;color:#f1e8e1}
+.skill-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.skill-slot{min-width:0;text-align:center}
+.skill-slot img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;border:1px solid #51453f;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.skill-slot span{display:block;margin-top:5px;color:#ddd3cc;font-size:clamp(8px,2.2vw,11px);line-height:1.08;font-weight:750;overflow-wrap:anywhere}
+.bottom-shell{min-width:0;background:rgba(13,12,12,.99);border-top:1px solid #302825;padding-bottom:max(30px,env(safe-area-inset-bottom));z-index:5}
+.bottomnav{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:8px 8px 7px}.bottomnav::-webkit-scrollbar{display:none}
+.navbtn{flex:0 0 74px;border:0;background:transparent;color:var(--muted);border-radius:18px;padding:10px 7px 9px;font-size:.76rem;cursor:pointer}
+.navbtn b{display:block;font-size:1.22rem;line-height:1.05;margin-bottom:5px}.navbtn.active{background:#2b1e17;color:#ffd0aa}
+@media(max-width:380px){.skill-strip{gap:4px}.start-card{padding-left:9px;padding-right:9px}}
+@media(min-width:760px){.bottomnav{justify-content:center}.navbtn{flex-basis:84px}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="profile-switch" aria-label="Wybór buildu Kasi">
-    <div class="profile-switch-inner">
-      <button class="profilebtn active" data-profile="kasia-early">Kasia Early Endgame</button>
-      <button class="profilebtn" data-profile="kasia-unique">Kasia Unique Endgame</button>
-    </div>
-  </header>
-
-  <main class="content" id="content" aria-live="polite">
-    <div class="profile active" data-profile-panel="kasia-early">
-      <section class="view active" data-tab-view="start"></section>
-      <section class="view" data-tab-view="skills"></section>
-      <section class="view" data-tab-view="gear"></section>
-      <section class="view" data-tab-view="aspects"></section>
-      <section class="view" data-tab-view="extras"></section>
-      <section class="view" data-tab-view="merc"></section>
-      <section class="view" data-tab-view="transition"></section>
-      <section class="view" data-tab-view="sources"></section>
-    </div>
-
-    <div class="profile" data-profile-panel="kasia-unique">
-      <section class="view active" data-tab-view="start"></section>
-      <section class="view" data-tab-view="skills"></section>
-      <section class="view" data-tab-view="gear"></section>
-      <section class="view" data-tab-view="aspects"></section>
-      <section class="view" data-tab-view="extras"></section>
-      <section class="view" data-tab-view="merc"></section>
-      <section class="view" data-tab-view="transition"></section>
-      <section class="view" data-tab-view="sources"></section>
-    </div>
-  </main>
-
-  <footer class="bottom-shell">
-    <nav class="bottomnav" aria-label="Główna nawigacja">
-      <button class="navbtn active" data-tab="start"><b>⌂</b>Start</button>
-      <button class="navbtn" data-tab="skills"><b>✦</b>Skille</button>
-      <button class="navbtn" data-tab="gear"><b>◈</b>Gear</button>
-      <button class="navbtn" data-tab="aspects"><b>◆</b>Aspekty</button>
-      <button class="navbtn" data-tab="extras"><b>✧</b>Dodatki</button>
-      <button class="navbtn" data-tab="merc"><b>♜</b>Pomocnik</button>
-      <button class="navbtn" data-tab="transition"><b>⇢</b>Endgame</button>
-      <button class="navbtn" data-tab="sources"><b>i</b>Info</button>
-    </nav>
-  </footer>
+<header class="profile-switch"><div class="profile-switch-inner">
+<button class="profilebtn active" data-profile="kasia-early">Kasia Early Endgame</button>
+<button class="profilebtn" data-profile="kasia-unique">Kasia Unique Endgame</button>
+</div></header>
+<main class="content" id="content">
+<div class="profile active" data-profile-panel="kasia-early">
+<section class="view active" data-tab-view="start">
+<div class="start-card"><h2>Pasek umiejętności</h2><div class="skill-strip">
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAHQAAAgIDAQEBAAAAAAAAAAAABQcGCAQJAwIBCv/EAEIQAAIBAgQDBQQIBwkAAAAAAAABAgMRBAUSITFBBhMiUWFxgZEUFSNCUnKCobHhBxYkM0NTYnSisbLwJDU2RJOS/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QAJxEBAAICAgICAQQDAAAAAAAAAAECEQMhEjFBBCJRYXEUMoGRobH/2gAMAwEAAhEDEQA/APqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABn8aOH4opHOz0Z30t9p9V9c01fVbGNW6q1r/W8+U8irWqRZefJ3XyaR9ujpX6PXvW+ueVn0l8U5axm0k6u7Yr8n3uQ9S2u/Hhf2Nbltq1aNqk7mU4/6vhpR/8AWOGaZpXPbcPiG/oZG5VYy/wCdN+STd2NLOmxzPoXRvhZ8W7XxMsPhyeEJb6LYx8c0w3U4xX1+qMNP3+TNY0nH1i6N8KPjXaOJlh8OTwlLfRbGPjmmG6nGK+v1Rhp+/wAmZprXNVXJrTFbYb7DxMm3Q8ddE4c8kewkAAAAAAAAAABuYzsNRSTtHExOS+pRv8ArXX19F/p5PibOOnHyaYqVV7j1l3EadfFmeJ4fDqcOi3GCZsDprY+0cvpgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Armia Umarłych</span></div>
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAHAABAAIDAQEAAAAAAAAAAAAABgUHBAgDAgEJ/8QAPRAAAgEDAgQDBQcFAwUAAAAAAQIDAAQRBRIhBjFBEyJRYXGBkQcyobHBFCNS4QhDYnOCorLwFjRDU7L/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMABAX/xAAnEQACAgICAgICAQUAAAAAAAAAAQIRAyExEkEEIlFhcYGhEzKBscH/2gAMAwEAAhEDEQA/APvQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABx9cq1OpOde8MclcfRK98TbLbf5P4H8OOleCLHbQW2F1OY3iH1jWH1T7B/8Aj2HUY4/dR40o+kfEr8PUenVIccf1Tn7p1qu+Q8M5uDMS9Uou7lZXfY3MEl9xq3jda1R9kO86cRxW6fO17vvr7b+AOro1+Fc5l4Z8s5sjoKv1c3h7M3JxZoAAAAAAAAAAA+HK1y8MlnJ5Lc+Zvo7NLuNTjeF5WzqXktz1x49Lx2mZzZfYo+oGX1uxR4T3S+qPByi+t2KPCe6X1R4OUXVtM+7D5nZPzXRsbw+eY9vT7FP9Flx+Z7omlfCpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Szkieletowy Wojownik</span></div>
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAHAABAAIDAQEAAAAAAAAAAAAABQYHBAgDAgEJ/8QAPxAAAQMDAgQDBQcFAQAAAAAAAQIDBAAFEQYhEjFBEyJRYXGBBxQykaGxwdHhI1JicuEUQ5Kisv/EABkBAAMBAQEAAAAAAAAAAAAAAAABAgMEBf/EACcRAAICAQMDBAMBAAAAAAAAAAABAhEDIRIxQVFhBBMiMnGBkaGx/9oADAMBAAIRAxEAPwD6wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABzvUz3NqZKtZL6HfVvU3w8eKx0VxknHk9TziG0JQ2t7y2C7U5rEObS3I3Wrro+bzMjbtG4v8ASvp+m0mo6/8Ak/Vvf1XlzVObi5m0WnX5L2b3wDq6jrjTqfIu6+wb1ffm7XyJXLDf3BvT9PtX7J+uR5v4bf3Y+39M9V7J+uR5v4aXVvM9vnt6fkWlh4aLz3gAAAAAAAAAAAHx5Y+XnpeSRbnvps7m3rp5tLTseK5V7D5K54H9Dbql1p7Ztcl6k/ct2sfPFwZSmqOSd6r5q/6u1PmL5j3W3am0vDPqb+bT9Svhh8tpiZ9tB4/s4n8W9tyfZ/eZj8gfCUp9Tez/L6V0er9uztrZtQkvdwA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Szkieletowy Mag</span></div>
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAGgABAAMBAQEAAAAAAAAAAAAABQYHAQQDAv/EADkQAAEDAwIEAwYEBwAAAAAAAAECAwQABREGEiExQRMiUWEHFDKBkaHBQlJxI2JygqKy4f/EABgBAAMBAQAAAAAAAAAAAAAAAAABAgME/8QAJREAAgICAQQCAgMAAAAAAAAAAAECEQMhEjEEE0FRImFxMnGR/9oADAMBAAIRAxEAPwD7YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5m9N57i5c1q8V0+T6OZpZvbqVaq1xk3k2vTOfXfA7f+Jzp39rfkvcb4Wj7I6qZ+V9v7Y+NHxU3WT5z5XbfzB+9mZV5WpSSk9ku+35E5td1XhuVY7G4xMS+9pR1fqv9nRjTgk7tp8ktTzT2XfZfqbOHqqjTgnZtx5JanuTzT2XfZfqbOHurq/bo9vJbXy8NPPxZfN0dTzS9Xd5r0qZr0vHN7hvVKjo3+fFs9PmD+F4v+H2Sfd+2Y8v7OO64t9PO1fLv7YH2v0v0q7fjjca78pM8u6+0Wd2fHbq6tpIOr/e55ebfEAAAAAAAAAAABfE8v1q96V9WuvF+3iXNptRM9TZXz9w4pXmOzjXJl9p/Z8uF8F7YxMbzSi2+TdHFvD0Klzp65vtzY9uVxVqUU3e6aeVH8jfdaVKftq2Z8O9voF24u+PNTqe2g1rAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Wybuch Zwłok</span></div>
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAHAABAAIDAQEAAAAAAAAAAAAABQYHAQQIAgMJ/8QAPBAAAQMDAgMFBgUFAAAAAAAAAQIDBAAFEQYhEjFBEyJRYXGBBxQykZGhwSMzQlJicrLh/8QAGAEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAAnEQACAQMEAgIDAAAAAAAAAAABAhEDEiExQQQTIlFhcTKBkaGx/9oADAMBAAIRAxEAPwD7kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5i9NZ5e5c1rMV1+T6OZpavfqVaq1xk3k2vTOdXfBbf+Jzp39rfkvcb4Wj7I6qZ+V9v7Y+NHxU3WT5z5XbfzB+9mZV5WpSSk9ku+35E5td1XhuVY7G4xMS+9pR1fqv9nRjTgk7tp8ktTzT2XfZfqbOHqqjTgnZtx5JanuTzT2XfZfqbOHurq/bo9vJbXy8NPPxZfN0dTzS9Xd5r0qZr0vHN7hvVKjo3+fFs9PmD+F4v+H2Sfd+2Y8v7OO64t9PO1fLv7YH2v0v0q7fjjca78pM8u6+0Wd2fHbq6tpIOr/e55ebfEAAAAAAAAAAABfE8v1q96V9WuvF+3iXNptRM9TZXz9w4pXmOzjXJl9p/Z8uF8F7YxMbzSi2+TdHFvD0Klzp65vtzY9uVxVqUU3e6aeVH8jfdaVKftq2Z8O9voF24u+PNTqe2g1rAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Rozdarcie</span></div>
+<div class="skill-slot"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAA8ADwDASIAAhEBAxEB/8QAHAABAAIDAQEAAAAAAAAAAAAABQYHAQQIAgMJ/8QAPBAAAQMDAgMFBgUFAAAAAAAAAQIDBAAFEQYhEjFBEyJRYXGBBxQykZGhwSMzQlJicrLh/8QAGAEAAwEBAAAAAAAAAAAAAAAAAQIDBAX/xAAnEQACAQMEAgIDAAAAAAAAAAABAhEDEiExQQQTIlFhcTKBkaGx/9oADAMBAAIRAxEAPwD7kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5i9NZ5e5c1rMV1+T6OZpavfqVaq1xk3k2vTOdXfBbf+Jzp39rfkvcb4Wj7I6qZ+V9v7Y+NHxU3WT5z5XbfzB+9mZV5WpSSk9ku+35E5td1XhuVY7G4xMS+9pR1fqv9nRjTgk7tp8ktTzT2XfZfqbOHqqjTgnZtx5JanuTzT2XfZfqbOHurq/bo9vJbXy8NPPxZfN0dTzS9Xd5r0qZr0vHN7hvVKjo3+fFs9PmD+F4v+H2Sfd+2Y8v7OO64t9PO1fLv7YH2v0v0q7fjjca78pM8u6+0Wd2fHbq6tpIOr/e55ebfEAAAAAAAAAAABfE8v1q96V9WuvF+3iXNptRM9TZXz9w4pXmOzjXJl9p/Z8uF8F7YxMbzSi2+TdHFvD0Klzp65vtzY9uVxVqUU3e6aeVH8jfdaVKftq2Z8O9voF24u+PNTqe2g1rAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt=""><span>Golem</span></div>
+</div></div>
+</section>
+<section class="view" data-tab-view="skills"></section><section class="view" data-tab-view="gear"></section><section class="view" data-tab-view="aspects"></section><section class="view" data-tab-view="extras"></section><section class="view" data-tab-view="merc"></section><section class="view" data-tab-view="transition"></section><section class="view" data-tab-view="sources"></section>
 </div>
-
+<div class="profile" data-profile-panel="kasia-unique">
+<section class="view active" data-tab-view="start"></section><section class="view" data-tab-view="skills"></section><section class="view" data-tab-view="gear"></section><section class="view" data-tab-view="aspects"></section><section class="view" data-tab-view="extras"></section><section class="view" data-tab-view="merc"></section><section class="view" data-tab-view="transition"></section><section class="view" data-tab-view="sources"></section>
+</div>
+</main>
+<footer class="bottom-shell"><nav class="bottomnav">
+<button class="navbtn active" data-tab="start"><b>⌂</b>Start</button><button class="navbtn" data-tab="skills"><b>✦</b>Skille</button><button class="navbtn" data-tab="gear"><b>◈</b>Gear</button><button class="navbtn" data-tab="aspects"><b>◆</b>Aspekty</button><button class="navbtn" data-tab="extras"><b>✧</b>Dodatki</button><button class="navbtn" data-tab="merc"><b>♜</b>Pomocnik</button><button class="navbtn" data-tab="transition"><b>⇢</b>Endgame</button><button class="navbtn" data-tab="sources"><b>i</b>Info</button>
+</nav></footer>
+</div>
 <script>
-(function(){
-  const TAB_KEY='diablo-companion-tab';
-  const PROFILE_KEY='diablo-companion-profile';
-  const tabs=['start','skills','gear','aspects','extras','merc','transition','sources'];
-  const profiles=['kasia-early','kasia-unique'];
-  const content=document.getElementById('content');
-
-  let activeTab='start';
-  let activeProfile='kasia-early';
-
-  try{
-    const t=localStorage.getItem(TAB_KEY);
-    const p=localStorage.getItem(PROFILE_KEY);
-    if(tabs.includes(t)) activeTab=t;
-    if(profiles.includes(p)) activeProfile=p;
-  }catch(e){}
-
-  function openTab(tab,scroll=true){
-    if(!tabs.includes(tab)) tab='start';
-    document.querySelectorAll('[data-tab-view]').forEach(v=>v.classList.toggle('active',v.dataset.tabView===tab));
-    document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-    activeTab=tab;
-    try{localStorage.setItem(TAB_KEY,tab)}catch(e){}
-    if(scroll) content.scrollTo({top:0,behavior:'auto'});
-  }
-
-  function openProfile(profile,scroll=true){
-    if(!profiles.includes(profile)) profile='kasia-early';
-    document.querySelectorAll('[data-profile-panel]').forEach(p=>p.classList.toggle('active',p.dataset.profilePanel===profile));
-    document.querySelectorAll('.profilebtn').forEach(b=>b.classList.toggle('active',b.dataset.profile===profile));
-    activeProfile=profile;
-    try{localStorage.setItem(PROFILE_KEY,profile)}catch(e){}
-    openTab(activeTab,false);
-    if(scroll) content.scrollTo({top:0,behavior:'auto'});
-  }
-
-  document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab,true)));
-  document.querySelectorAll('.profilebtn').forEach(b=>b.addEventListener('click',()=>openProfile(b.dataset.profile,true)));
-
-  openProfile(activeProfile,false);
-  openTab(activeTab,false);
-})();
+(()=>{const tabs=['start','skills','gear','aspects','extras','merc','transition','sources'],profiles=['kasia-early','kasia-unique'],content=document.getElementById('content');let activeTab='start',activeProfile='kasia-early';try{const t=localStorage.getItem('diablo-companion-tab'),p=localStorage.getItem('diablo-companion-profile');if(tabs.includes(t))activeTab=t;if(profiles.includes(p))activeProfile=p}catch(e){}
+function openTab(tab,scroll=true){if(!tabs.includes(tab))tab='start';document.querySelectorAll('[data-tab-view]').forEach(v=>v.classList.toggle('active',v.dataset.tabView===tab));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));activeTab=tab;try{localStorage.setItem('diablo-companion-tab',tab)}catch(e){}if(scroll)content.scrollTo({top:0,behavior:'auto'})}
+function openProfile(profile,scroll=true){if(!profiles.includes(profile))profile='kasia-early';document.querySelectorAll('[data-profile-panel]').forEach(p=>p.classList.toggle('active',p.dataset.profilePanel===profile));document.querySelectorAll('.profilebtn').forEach(b=>b.classList.toggle('active',b.dataset.profile===profile));activeProfile=profile;try{localStorage.setItem('diablo-companion-profile',profile)}catch(e){}openTab(activeTab,false);if(scroll)content.scrollTo({top:0,behavior:'auto'})}
+document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab,true)));document.querySelectorAll('.profilebtn').forEach(b=>b.addEventListener('click',()=>openProfile(b.dataset.profile,true)));openProfile(activeProfile,false);openTab(activeTab,false)})();
 </script>
-</body>
-</html>
+</body></html>
