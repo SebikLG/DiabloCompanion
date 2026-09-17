@@ -35,3 +35,21 @@ if(earlyAspectsView){earlyAspectsView.querySelectorAll('.build-meta,.aspect-note
 const aspectUiStyle=document.createElement('style');
 aspectUiStyle.textContent='.aspect-num{display:none!important}.aspect-head{display:block!important}';
 document.head.appendChild(aspectUiStyle);
+
+const talismansData=[
+{n:1,name:"Berú Czarnego Całunu",bonus:"Premia do rang umiejętności Ciemności"},
+{n:2,name:"Fer Czarnego Całunu",bonus:"Premia do rang umiejętności Ciemności"},
+{n:3,name:"Linta Czarnego Całunu",bonus:"Premia do rang umiejętności Ciemności"},
+{n:4,name:"Mlor Czarnego Całunu",bonus:"Premia do rang umiejętności Ciemności"},
+{n:5,name:"Phoba Czarnego Całunu",bonus:"Premia do rang umiejętności Ciemności"},
+{n:6,name:"Legendarna Pieczęć Horadrimów",bonus:"Liczba miejsc na Talizmany"}
+];
+const earlyTalismansView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="extras"]');
+if(earlyTalismansView){
+  earlyTalismansView.innerHTML='<div class="talisman-tree">'+talismansData.map(it=>`<article class="talisman-card"><div class="talisman-head"><span class="talisman-num">${it.n}</span><div class="talisman-name">${it.name}</div></div><div class="talisman-bonus">${it.bonus}</div></article>`).join('')+'</div>';
+}
+const extrasNav=document.querySelector('.navbtn[data-tab="extras"]');
+if(extrasNav){extrasNav.innerHTML='<b>✧</b>Talizmany';}
+const talismanUiStyle=document.createElement('style');
+talismanUiStyle.textContent='.talisman-tree{max-width:760px;margin:0 auto;display:grid;gap:14px}.talisman-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.talisman-head{display:grid;grid-template-columns:34px minmax(0,1fr);gap:11px;align-items:center;padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.talisman-num{width:30px;height:30px;border-radius:9px;background:#3b291d;color:#ffe8b5;display:grid;place-items:center;font-size:.8rem;font-weight:950}.talisman-name{font-size:.96rem;font-weight:950;line-height:1.25}.talisman-bonus{padding:13px 14px;color:#efe7df;font-size:.88rem;font-weight:800;line-height:1.35}';
+document.head.appendChild(talismanUiStyle);
