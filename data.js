@@ -20,13 +20,18 @@ const itemsData=[
 {n:2,name:"Broń",aff:["Minimalne obrażenia broni","Inteligencja","Mnożnik obrażeń Cienia","Mnożnik obrażeń od trafień krytycznych"],ga:[0],mw:[0],temper:"Szansa na trafienie krytyczne",socket:"2× Ametyst"}
 ];
 const aspectsData=[
-{n:1,slot:"Pierścień 1",name:"Aspekt Smugi Cienia",source:"Podziemia: Ul · Scosglen",dungeon:true},
-{n:2,slot:"Broń",name:"Aspekt Reanimacji",source:"Podziemia: Knieja Aldura · Scosglen",dungeon:true},
-{n:3,slot:"Amulet",name:"Piekielnie Dowódczy Aspekt",source:"Losowy łup",dungeon:false},
-{n:4,slot:"Pierścień 2",name:"Aspekt Oszalałej Agresji",source:"Losowy łup",dungeon:false},
-{n:5,slot:"Rękawice",name:"Aspekt Amplifikacji Obrażeń",source:"Losowy łup",dungeon:false},
-{n:6,slot:"Spodnie",name:"Aspekt Kowadła Glynna",source:"Losowy łup",dungeon:false},
 {n:7,slot:"Hełm",name:"Aspekt Niebiańskiej Siły",source:"Losowy łup",dungeon:false},
 {n:8,slot:"Napierśnik",name:"Aspekt Wzmocnionych Kości",source:"Losowy łup",dungeon:false},
-{n:9,slot:"Buty",name:"Aspekt Okrawanego Mięsa",source:"Losowy łup",dungeon:false}
+{n:5,slot:"Rękawice",name:"Aspekt Amplifikacji Obrażeń",source:"Losowy łup",dungeon:false},
+{n:6,slot:"Spodnie",name:"Aspekt Kowadła Glynna",source:"Losowy łup",dungeon:false},
+{n:9,slot:"Buty",name:"Aspekt Okrawanego Mięsa",source:"Losowy łup",dungeon:false},
+{n:3,slot:"Amulet",name:"Piekielnie Dowódczy Aspekt",source:"Losowy łup",dungeon:false},
+{n:1,slot:"Pierścień 1",name:"Aspekt Smugi Cienia",source:"Podziemia: Ul · Scosglen",dungeon:true},
+{n:4,slot:"Pierścień 2",name:"Aspekt Oszalałej Agresji",source:"Losowy łup",dungeon:false},
+{n:2,slot:"Broń",name:"Aspekt Reanimacji",source:"Podziemia: Knieja Aldura · Scosglen",dungeon:true}
 ];
+const earlyAspectsView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="aspects"]');
+if(earlyAspectsView){earlyAspectsView.querySelectorAll('.build-meta,.aspect-note').forEach(el=>el.remove());}
+const aspectUiStyle=document.createElement('style');
+aspectUiStyle.textContent='.aspect-num{display:none!important}.aspect-head{display:block!important}';
+document.head.appendChild(aspectUiStyle);
