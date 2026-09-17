@@ -12,24 +12,35 @@
   --text:#f3eee9;
   --muted:#a79b93;
   --accent:#d97935;
+  --header-h:86px;
+  --bottom-h:117px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg)}
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+  background:var(--bg);
+}
 body{
-  height:100dvh;
-  display:flex;
-  flex-direction:column;
+  position:fixed;
+  inset:0;
   color:var(--text);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:radial-gradient(circle at 80% -10%,rgba(217,121,53,.12),transparent 34%),var(--bg);
 }
 button{font:inherit}
 
-/* GÓRA — zawsze nieruchoma */
+/* GÓRA — przypięta do ekranu, nie do przewijanej treści */
 .profile-switch{
-  flex:0 0 auto;
-  z-index:10;
-  background:rgba(13,12,12,.98);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:30;
+  background:rgba(13,12,12,.99);
   border-bottom:1px solid #302825;
   padding:15px 14px;
 }
@@ -52,6 +63,9 @@ button{font:inherit}
   font-size:clamp(14px,4vw,18px);
   line-height:1.12;
   cursor:pointer;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .profilebtn.active{
   border-color:#c96e35;
@@ -60,30 +74,37 @@ button{font:inherit}
   box-shadow:0 0 0 1px rgba(217,121,53,.18) inset;
 }
 
-/* ŚRODEK — tylko ta część może się przewijać */
+/* ŚRODEK — jedyna przewijana część */
 .content{
-  flex:1 1 auto;
-  min-height:0;
+  position:fixed;
+  left:0;
+  right:0;
+  top:var(--header-h);
+  bottom:var(--bottom-h);
   overflow-y:auto;
   overflow-x:hidden;
   overscroll-behavior:contain;
   -webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
 }
 .profile{display:none;min-height:100%}
 .profile.active{display:block}
 .view{display:none;min-height:100%}
 .view.active{display:block}
 
-/* DÓŁ — zawsze nieruchomy */
+/* DÓŁ — przypięty do ekranu */
 .bottomnav{
-  flex:0 0 auto;
-  z-index:10;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:38px;
+  z-index:30;
   display:flex;
   gap:5px;
   overflow-x:auto;
   overflow-y:hidden;
   scrollbar-width:none;
-  background:rgba(13,12,12,.98);
+  background:rgba(13,12,12,.99);
   border-top:1px solid #302825;
   border-bottom:1px solid #302825;
   padding:8px 8px 7px;
@@ -112,7 +133,11 @@ button{font:inherit}
 
 /* Stałe miejsce na androidowy pasek gestów */
 .android-gesture-space{
-  flex:0 0 38px;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:29;
   height:38px;
   background:#0d0c0c;
 }
@@ -125,7 +150,7 @@ button{font:inherit}
 </head>
 <body>
 
-<header class="profile-switch" aria-label="Wybór buildu Kasi">
+<header class="profile-switch" id="profileSwitch" aria-label="Wybór buildu Kasi">
   <div class="profile-switch-inner">
     <button class="profilebtn active" data-profile="kasia-early">Kasia Early Endgame</button>
     <button class="profilebtn" data-profile="kasia-unique">Kasia Unique Endgame</button>
@@ -156,7 +181,7 @@ button{font:inherit}
   </div>
 </main>
 
-<nav class="bottomnav" aria-label="Główna nawigacja">
+<nav class="bottomnav" id="bottomNav" aria-label="Główna nawigacja">
   <button class="navbtn active" data-tab="start"><b>⌂</b>Start</button>
   <button class="navbtn" data-tab="skills"><b>✦</b>Skille</button>
   <button class="navbtn" data-tab="gear"><b>◈</b>Gear</button>
@@ -175,6 +200,25 @@ button{font:inherit}
   const tabs=['start','skills','gear','aspects','extras','merc','transition','sources'];
   const profiles=['kasia-early','kasia-unique'];
   const content=document.getElementById('content');
+  const header=document.getElementById('profileSwitch');
+  const bottomNav=document.getElementById('bottomNav');
+
+  function syncFixedSizes(){
+    const headerH=Math.ceil(header.getBoundingClientRect().height);
+    const bottomH=Math.ceil(bottomNav.getBoundingClientRect().height)+38;
+    document.documentElement.style.setProperty('--header-h',headerH+'px');
+    document.documentElement.style.setProperty('--bottom-h',bottomH+'px');
+  }
+  syncFixedSizes();
+  window.addEventListener('resize',syncFixedSizes);
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize',syncFixedSizes);
+  }
+  if('ResizeObserver' in window){
+    const ro=new ResizeObserver(syncFixedSizes);
+    ro.observe(header);
+    ro.observe(bottomNav);
+  }
 
   let activeTab='start';
   let activeProfile='kasia-early';
@@ -209,6 +253,7 @@ button{font:inherit}
 
   openProfile(activeProfile,false);
   openTab(activeTab,false);
+  syncFixedSizes();
 })();
 </script>
 </body>
