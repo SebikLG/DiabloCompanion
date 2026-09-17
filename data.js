@@ -51,3 +51,52 @@ if(mercNav){mercNav.innerHTML='<b>♜</b>Paragony';}
 const talismanUiStyle=document.createElement('style');
 talismanUiStyle.textContent='.talisman-tree{max-width:760px;margin:0 auto;display:grid;gap:14px}.talisman-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.talisman-head{display:block;padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.talisman-name{font-size:.96rem;font-weight:950;line-height:1.25}.talisman-bonus{padding:13px 14px;color:#efe7df;font-size:.88rem;font-weight:800;line-height:1.35}';
 document.head.appendChild(talismanUiStyle);
+
+const earlyParagonView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="merc"]');
+if(earlyParagonView){
+  earlyParagonView.innerHTML='<div class="paragon-tree"><article class="paragon-card"><div class="paragon-head"><div class="paragon-title">Tablica startowa</div><div class="paragon-glyph">Glif: Wojownik</div></div><button class="paragon-image-button" type="button" aria-label="Otwórz Tablicę startową na pełnym ekranie"><img class="paragon-image" src="assets/paragony/Tablica01.jpg" alt="Tablica startowa — glif Wojownik"></button></article></div>';
+}
+const paragonStyle=document.createElement('style');
+paragonStyle.textContent='.paragon-tree{max-width:760px;margin:0 auto;display:grid;gap:18px}.paragon-card{background:#151310;border:1px solid #51483d;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.paragon-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.paragon-title{font-size:1rem;font-weight:950;line-height:1.25}.paragon-glyph{margin-top:4px;font-size:.82rem;font-weight:850;color:#5b4634}.paragon-image-button{display:block;width:100%;padding:0;border:0;background:#0b0a0a;cursor:zoom-in}.paragon-image{display:block;width:100%;height:auto}.paragon-lightbox{position:fixed;inset:0;z-index:9999;background:#050505;display:none;overflow:hidden;touch-action:none}.paragon-lightbox.open{display:block}.paragon-lightbox-viewport{position:absolute;inset:0;overflow:hidden;touch-action:none}.paragon-lightbox-img{position:absolute;left:50%;top:50%;width:min(96vw,934px);height:auto;max-width:none;max-height:none;transform-origin:center center;will-change:transform;user-select:none;-webkit-user-drag:none}.paragon-close{position:absolute;right:14px;top:max(14px,env(safe-area-inset-top));z-index:3;width:44px;height:44px;border:1px solid #75624f;border-radius:50%;background:rgba(20,18,16,.9);color:#fff;font-size:1.55rem;font-weight:800;line-height:1;display:grid;place-items:center}.paragon-zoom-hint{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;background:rgba(20,18,16,.82);border:1px solid #5b5046;color:#e7ddd5;border-radius:999px;padding:7px 11px;font-size:.72rem;font-weight:800;white-space:nowrap;pointer-events:none}';
+document.head.appendChild(paragonStyle);
+
+if(earlyParagonView){
+  const overlay=document.createElement('div');
+  overlay.className='paragon-lightbox';
+  overlay.innerHTML='<div class="paragon-lightbox-viewport"><img class="paragon-lightbox-img" src="assets/paragony/Tablica01.jpg" alt="Tablica startowa — glif Wojownik"></div><button class="paragon-close" type="button" aria-label="Zamknij">×</button><div class="paragon-zoom-hint">Przybliż dwoma palcami · przeciągnij, aby przesunąć</div>';
+  document.body.appendChild(overlay);
+  const thumb=earlyParagonView.querySelector('.paragon-image-button');
+  const viewport=overlay.querySelector('.paragon-lightbox-viewport');
+  const img=overlay.querySelector('.paragon-lightbox-img');
+  const close=overlay.querySelector('.paragon-close');
+  const pointers=new Map();
+  let scale=1,tx=0,ty=0,startScale=1,startTx=0,startTy=0,startDist=0,startMid={x:0,y:0},singleStart={x:0,y:0};
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  const render=()=>{img.style.transform=`translate(-50%,-50%) translate(${tx}px,${ty}px) scale(${scale})`;};
+  const midpoint=(a,b)=>({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
+  const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+  const reset=()=>{scale=1;tx=0;ty=0;pointers.clear();render();};
+  const open=()=>{reset();overlay.classList.add('open');};
+  const shut=()=>{overlay.classList.remove('open');reset();};
+  thumb.addEventListener('click',open);
+  close.addEventListener('click',shut);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)shut();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))shut();});
+  viewport.addEventListener('pointerdown',e=>{
+    viewport.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pointers.size===1){singleStart={x:e.clientX,y:e.clientY};startTx=tx;startTy=ty;}
+    if(pointers.size===2){const [a,b]=[...pointers.values()];startDist=distance(a,b);startMid=midpoint(a,b);startScale=scale;startTx=tx;startTy=ty;}
+  });
+  viewport.addEventListener('pointermove',e=>{
+    if(!pointers.has(e.pointerId))return;
+    pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pointers.size===2){const [a,b]=[...pointers.values()];const d=distance(a,b);const m=midpoint(a,b);scale=clamp(startScale*(d/startDist),1,5);tx=startTx+(m.x-startMid.x);ty=startTy+(m.y-startMid.y);render();}
+    else if(pointers.size===1&&scale>1){tx=startTx+(e.clientX-singleStart.x);ty=startTy+(e.clientY-singleStart.y);render();}
+  });
+  const endPointer=e=>{pointers.delete(e.pointerId);if(pointers.size===1){const p=[...pointers.values()][0];singleStart={x:p.x,y:p.y};startTx=tx;startTy=ty;}if(scale===1){tx=0;ty=0;render();}};
+  viewport.addEventListener('pointerup',endPointer);
+  viewport.addEventListener('pointercancel',endPointer);
+  let lastTap=0;
+  viewport.addEventListener('pointerup',e=>{const now=Date.now();if(now-lastTap<280&&pointers.size===0){scale=scale>1?1:2.5;tx=0;ty=0;render();}lastTap=now;});
+}
