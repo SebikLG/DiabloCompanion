@@ -53,8 +53,12 @@ talismanUiStyle.textContent='.talisman-tree{max-width:760px;margin:0 auto;displa
 document.head.appendChild(talismanUiStyle);
 
 const earlyParagonView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="merc"]');
+const paragonBoards=[
+{name:"Tablica startowa",glyph:"Wojownik",src:"assets/paragony/Tablica01.jpg"},
+{name:"Przywódca Kultu",glyph:"Odrodzicielstwo",src:"assets/paragony/Tablica02.jpg"}
+];
 if(earlyParagonView){
-  earlyParagonView.innerHTML='<div class="paragon-tree"><article class="paragon-card"><div class="paragon-head"><div class="paragon-title">Tablica startowa</div><div class="paragon-glyph">Glif: Wojownik</div></div><button class="paragon-image-button" type="button" aria-label="Otwórz Tablicę startową na pełnym ekranie"><img class="paragon-image" src="assets/paragony/Tablica01.jpg" alt="Tablica startowa — glif Wojownik"></button></article></div>';
+  earlyParagonView.innerHTML='<div class="paragon-tree">'+paragonBoards.map(it=>`<article class="paragon-card"><div class="paragon-head"><div class="paragon-title">${it.name}</div><div class="paragon-glyph">Glif: ${it.glyph}</div></div><button class="paragon-image-button" type="button" data-src="${it.src}" data-alt="${it.name} — glif ${it.glyph}" aria-label="Otwórz ${it.name} na pełnym ekranie"><img class="paragon-image" src="${it.src}" alt="${it.name} — glif ${it.glyph}"></button></article>`).join('')+'</div>';
 }
 const paragonStyle=document.createElement('style');
 paragonStyle.textContent='.paragon-tree{max-width:760px;margin:0 auto;display:grid;gap:18px}.paragon-card{background:#151310;border:1px solid #51483d;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.paragon-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.paragon-title{font-size:1rem;font-weight:950;line-height:1.25}.paragon-glyph{margin-top:4px;font-size:.82rem;font-weight:850;color:#5b4634}.paragon-image-button{display:block;width:100%;padding:0;border:0;background:#0b0a0a;cursor:zoom-in}.paragon-image{display:block;width:100%;height:auto}.paragon-lightbox{position:fixed;inset:0;z-index:9999;background:#050505;display:none;overflow:hidden;touch-action:none}.paragon-lightbox.open{display:block}.paragon-lightbox-viewport{position:absolute;inset:0;overflow:hidden;touch-action:none}.paragon-lightbox-img{position:absolute;left:50%;top:50%;width:min(96vw,934px);height:auto;max-width:none;max-height:none;transform-origin:center center;will-change:transform;user-select:none;-webkit-user-drag:none}.paragon-close{position:absolute;right:14px;top:max(14px,env(safe-area-inset-top));z-index:3;width:44px;height:44px;border:1px solid #75624f;border-radius:50%;background:rgba(20,18,16,.9);color:#fff;font-size:1.55rem;font-weight:800;line-height:1;display:grid;place-items:center}.paragon-zoom-hint{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;background:rgba(20,18,16,.82);border:1px solid #5b5046;color:#e7ddd5;border-radius:999px;padding:7px 11px;font-size:.72rem;font-weight:800;white-space:nowrap;pointer-events:none}';
@@ -65,7 +69,7 @@ if(earlyParagonView){
   overlay.className='paragon-lightbox';
   overlay.innerHTML='<div class="paragon-lightbox-viewport"><img class="paragon-lightbox-img" src="assets/paragony/Tablica01.jpg" alt="Tablica startowa — glif Wojownik"></div><button class="paragon-close" type="button" aria-label="Zamknij">×</button><div class="paragon-zoom-hint">Przybliż dwoma palcami · przeciągnij, aby przesunąć</div>';
   document.body.appendChild(overlay);
-  const thumb=earlyParagonView.querySelector('.paragon-image-button');
+  const thumbs=earlyParagonView.querySelectorAll('.paragon-image-button');
   const viewport=overlay.querySelector('.paragon-lightbox-viewport');
   const img=overlay.querySelector('.paragon-lightbox-img');
   const close=overlay.querySelector('.paragon-close');
@@ -76,9 +80,9 @@ if(earlyParagonView){
   const midpoint=(a,b)=>({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
   const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
   const reset=()=>{scale=1;tx=0;ty=0;pointers.clear();render();};
-  const open=()=>{reset();overlay.classList.add('open');};
+  const open=button=>{img.src=button.dataset.src;img.alt=button.dataset.alt;reset();overlay.classList.add('open');};
   const shut=()=>{overlay.classList.remove('open');reset();};
-  thumb.addEventListener('click',open);
+  thumbs.forEach(button=>button.addEventListener('click',()=>open(button)));
   close.addEventListener('click',shut);
   overlay.addEventListener('click',e=>{if(e.target===overlay)shut();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))shut();});
@@ -98,5 +102,5 @@ if(earlyParagonView){
   viewport.addEventListener('pointerup',endPointer);
   viewport.addEventListener('pointercancel',endPointer);
   let lastTap=0;
-  viewport.addEventListener('pointerup',e=>{const now=Date.now();if(now-lastTap<280&&pointers.size===0){scale=scale>1?1:2.5;tx=0;ty=0;render();}lastTap=now;});
+  viewport.addEventListener('pointerup',()=>{const now=Date.now();if(now-lastTap<280&&pointers.size===0){scale=scale>1?1:2.5;tx=0;ty=0;render();}lastTap=now;});
 }
