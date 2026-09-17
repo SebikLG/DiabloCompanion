@@ -1,134 +1,158 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="theme-color" content="#11100f"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0c0c">
 <title>Diablo Companion — S15</title>
 <style>
-
 :root{
-  --bg:#0d0c0c;--panel:#171515;--panel2:#201c1a;--line:#332b27;--txt:#f3eee9;--muted:#b6aaa1;
-  --accent:#d97935;--accent2:#f2b36f;--good:#7fc48b;--warn:#e5b760;--danger:#d86f68;--blue:#7fb5d8;
-  --shadow:0 10px 30px rgba(0,0,0,.28);--radius:16px;
+  --bg:#0d0c0c;
+  --line:#332b27;
+  --text:#f3eee9;
+  --muted:#a79b93;
+  --accent:#d97935;
 }
 *{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 80% -10%,rgba(217,121,53,.13),transparent 32%),var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45;padding-bottom:132px}
-button,input{font:inherit}
-a{color:var(--accent2)}
-.wrap{max-width:760px;margin:0 auto;padding:0 14px}
-header{padding:22px 0 12px}
-.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent2);font-weight:800}
-h1{font-size:1.65rem;line-height:1.12;margin:5px 0 7px}
-.sub{color:var(--muted);font-size:.94rem}
-.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
-.badge{border:1px solid var(--line);background:#171411;padding:5px 9px;border-radius:999px;font-size:.78rem;color:#ddd3cb}
-.badge.good{border-color:#35543c;color:#a9ddb1}.badge.warn{border-color:#5a4827;color:#efd08b}.badge.blue{border-color:#315269;color:#a7d0ea}
-.hero{background:linear-gradient(145deg,#201a16,#151313);border:1px solid #3a2e27;border-radius:20px;padding:16px;box-shadow:var(--shadow);margin:10px 0 14px}
-.hero h2{font-size:1.18rem;margin:0 0 8px}.hero p{margin:6px 0;color:#ded5cf}
-.hero strong{color:#fff}
-.quickbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
-.quick{background:#0f0e0e;border:1px solid var(--line);border-radius:13px;padding:10px 8px;text-align:center}.quick b{display:block;font-size:1.08rem}.quick span{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}
-.toolbar{display:flex;gap:8px;overflow:auto;padding:2px 0 11px;scrollbar-width:none}.toolbar::-webkit-scrollbar{display:none}
-.pill{flex:0 0 auto;border:1px solid var(--line);background:#151313;color:var(--txt);padding:9px 11px;border-radius:12px;cursor:pointer}.pill.active{border-color:var(--accent);background:#251b15;color:#ffd4ae}.pill.small{padding:6px 9px;font-size:.8rem}
-section.view{display:none}.view.active{display:block}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:10px 0;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-.card h3{margin:0 0 9px;font-size:1.05rem}.card h4{margin:12px 0 6px;font-size:.93rem;color:#eadfd7}
-.note{border-left:3px solid var(--accent);padding:9px 11px;background:#201812;border-radius:0 10px 10px 0;color:#e6d7ca;margin:9px 0;font-size:.9rem}.note.good{border-color:var(--good);background:#132017}.note.warn{border-color:var(--warn);background:#211b10}.note.blue{border-color:var(--blue);background:#111b21}
-.skillbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.skillchip{min-height:72px;background:#111010;border:1px solid var(--line);border-radius:13px;padding:9px;display:flex;flex-direction:column;justify-content:center;text-align:center}.skillchip b{font-size:.88rem}.skillchip span{font-size:.71rem;color:var(--muted);margin-top:3px}
-.flowlist{display:grid;gap:8px}.flowitem{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;background:#121111;border:1px solid #2f2925;border-radius:13px}.flowitem .n{width:27px;height:27px;flex:0 0 27px;display:grid;place-items:center;border-radius:50%;background:#2a1d15;border:1px solid #684329;color:#ffd0a4;font-weight:900;font-size:.8rem}.flowitem b{display:block;font-size:.94rem}.flowitem small{display:block;color:var(--muted);margin-top:2px;font-size:.79rem}
-.rankgrid{display:grid;grid-template-columns:1fr auto;gap:6px 10px}.rankgrid div{padding:5px 0;border-bottom:1px dashed #322c28}.rankgrid .r{font-weight:800;color:var(--accent2)}
-.skilltree{border:1px solid #3a302b;border-radius:15px;background:#111010;margin:11px 0;overflow:hidden}.skilltree-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 13px;background:#1c1816}.skilltree-head b{font-size:1.02rem}.rankpill{flex:0 0 auto;border-radius:999px;padding:5px 9px;background:#2b1e16;border:1px solid #684329;color:#ffc38d;font-weight:900;font-size:.79rem}.treepath{padding:11px 12px 12px}.tree-node{position:relative;margin:0 auto;padding:9px 10px;border:1px solid #39312c;border-radius:11px;background:#171514}.tree-node+.tree-node{margin-top:19px}.tree-node+.tree-node:before{content:'↓';position:absolute;top:-20px;left:50%;transform:translateX(-50%);color:#8d7564;font-weight:900}.tree-node .tier{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:3px}.tree-node .pos{font-size:.67rem;letter-spacing:.05em;font-weight:900;color:#ffd0a4;border:1px solid #684329;background:#261b15;padding:3px 6px;border-radius:7px}.tree-node .kind{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:#958981;font-weight:800}.tree-node strong{display:block;font-size:.92rem;color:#f4ece6}.tree-node small{display:block;color:var(--muted);font-size:.77rem;margin-top:2px}.phaselead{padding:10px 11px;border-radius:12px;background:#151d21;border-left:3px solid var(--blue);color:#d8e8f1;font-size:.88rem;margin:9px 0 12px}
-.phase-title{margin:28px 2px 12px;padding:14px 16px;border-radius:16px;border:1px solid #44362f;background:linear-gradient(135deg,#241a15,#151313);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.phase-title span{display:block;font-size:1.55rem;line-height:1;font-weight:950;letter-spacing:.08em;color:#ffd0a4}
-.phase-title small{display:block;margin-top:7px;font-size:.92rem;font-weight:800;color:#d9cec6;letter-spacing:.015em}
-.phase-title.phase2{margin-top:42px;border-color:#3b4851;background:linear-gradient(135deg,#172129,#151313)}
-.phase-title.phase2 span{color:#a9d7f0}
-.phasebox{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-.phase-separator{height:18px;margin:6px 0 0;border-bottom:1px solid #2f2925}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg)}
+body{
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(circle at 80% -10%,rgba(217,121,53,.12),transparent 34%),var(--bg);
+}
+button{font:inherit}
 
-.levelplan{display:grid;gap:6px;margin-top:10px}
-.levelrow{display:grid;grid-template-columns:78px 1fr;gap:10px;align-items:start;padding:9px 10px;border:1px solid #342d29;border-radius:11px;background:#121111}
-.levelrow .lv{font-weight:950;color:var(--accent2);font-size:.82rem;letter-spacing:.02em}
-.levelrow .pick{font-size:.88rem;color:#e8dfd8}
-.levelrow .pick b{color:#fff}
-.levelrow.swap{border-color:#5a4827;background:#211b10}
-.levelrow.bonus{border-color:#315269;background:#111b21}
-.levelrow small{display:block;color:var(--muted);margin-top:2px;font-size:.76rem}
-.skillnote{font-size:.76rem;color:#9f9289;margin-top:7px}
-.priority{counter-reset:item}.priority li{list-style:none;counter-increment:item;margin:7px 0;padding-left:34px;position:relative}.priority li:before{content:counter(item);position:absolute;left:0;top:0;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:#2a1d15;border:1px solid #5c3b26;color:#ffd2a7;font-weight:800;font-size:.78rem}
-.slot{border:1px solid #372e29;border-radius:14px;overflow:hidden;margin:10px 0;background:#121111}.slothead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;background:#1c1816}.slothead b{font-size:1rem}.aspect{font-size:.78rem;color:var(--accent2);text-align:right}.slotbody{padding:10px 12px}.slotbody ol{margin:5px 0 8px;padding:0}.meta{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:.73rem;background:#211d1a;border:1px solid #3b332e;border-radius:8px;padding:4px 7px;color:#cec2ba}.tag.key{color:#bce5c4;border-color:#34543a}.tag.blue{color:#b9d9ec;border-color:#315069}.tag.warn{color:#efce89;border-color:#5b4824}
-.aspectcard{padding:0;border:1px solid #3a302b;border-radius:14px;background:#121111;margin:10px 0;overflow:hidden}.aspectcard .equip{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:#241a14;border-bottom:1px solid #463326;font-size:1.02rem;font-weight:950;letter-spacing:.035em;color:#fff}.aspectcard .equip span{font-size:.65rem;text-transform:uppercase;color:#c8a98e;letter-spacing:.08em}.aspectcard .inside{padding:11px 12px 12px}.aspectcard .name{font-weight:900;color:#f4c18d;font-size:1rem}.aspectcard p{margin:7px 0 0;color:#dbd1cb;font-size:.89rem}
-.infogrid{display:grid;gap:8px}.infocard{padding:11px 12px;border:1px solid #342d29;border-radius:12px;background:#121111}.infocard b{display:block;color:#f2e8e0}.infocard small{display:block;color:var(--muted);margin-top:3px}.jewelgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.jewelcard{padding:12px;border:1px solid #3a302b;border-radius:13px;background:#121111}.jewelcard .equipname{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:#c4b7ae;font-weight:900}.jewelcard strong{display:block;font-size:1.05rem;color:#f5c18e;margin-top:4px}.jewelcard small{display:block;color:#9f938b;margin-top:2px}
-.kv{display:grid;grid-template-columns:minmax(110px,.8fr) 1.5fr;gap:7px 10px;font-size:.9rem}.kv b{color:#f2e7df}.kv span{color:#c9bdb5}
-.source{font-size:.75rem;color:#8f8580}.source a{color:#aa9c91}
-.bottomnav{position:fixed;z-index:20;bottom:38px;left:0;right:0;background:rgba(13,12,12,.95);backdrop-filter:blur(12px);border-top:1px solid #302825;border-bottom:1px solid #302825;padding:7px max(8px,env(safe-area-inset-right)) 7px max(8px,env(safe-area-inset-left));display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}.bottomnav::-webkit-scrollbar{display:none}.navbtn{flex:0 0 auto;min-width:74px;border:0;background:transparent;color:#9f948d;border-radius:11px;padding:7px 8px;font-size:.72rem;cursor:pointer}.navbtn b{display:block;font-size:1rem;line-height:1.1;margin-bottom:2px}.navbtn.active{background:#251b16;color:#f5c89f}
-.gameMode .long{display:none!important}.gameMode .card{padding:11px}.gameMode .hero{display:none}.gameMode header{padding-bottom:4px}.gameMode .slotbody li:nth-child(n+4){display:none}.gameMode .slotbody .meta .tag:nth-child(n+3){display:none}
-.topactions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.action{border:1px solid var(--line);background:#181514;color:#ded6d0;border-radius:11px;padding:8px 10px;cursor:pointer;font-size:.82rem}.action.primary{border-color:#6c4429;background:#281b13;color:#ffd2ab}
-.hide{display:none!important}
-@media(max-width:410px){.jewelgrid{grid-template-columns:1fr}}
-@media(min-width:620px){h1{font-size:2rem}.skillbar{grid-template-columns:repeat(6,1fr)}.quickbar{grid-template-columns:repeat(5,1fr)}.bottomnav{justify-content:center}.navbtn{min-width:82px}}
+/* GÓRA — zawsze nieruchoma */
+.profile-switch{
+  flex:0 0 auto;
+  z-index:10;
+  background:rgba(13,12,12,.98);
+  border-bottom:1px solid #302825;
+  padding:15px 14px;
+}
+.profile-switch-inner{
+  width:100%;
+  max-width:760px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:10px;
+}
+.profilebtn{
+  min-width:0;
+  border:1px solid var(--line);
+  background:#151313;
+  color:#e3dad4;
+  border-radius:18px;
+  padding:15px 10px;
+  font-weight:900;
+  font-size:clamp(14px,4vw,18px);
+  line-height:1.12;
+  cursor:pointer;
+}
+.profilebtn.active{
+  border-color:#c96e35;
+  background:#2a1d16;
+  color:#ffd2ad;
+  box-shadow:0 0 0 1px rgba(217,121,53,.18) inset;
+}
 
-.profile-switch{position:sticky;top:0;z-index:40;background:rgba(13,12,12,.96);backdrop-filter:blur(14px);border-bottom:1px solid #302825;padding:9px 0 8px}
-.profile-switch .wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.profilebtn{border:1px solid var(--line);background:#151313;color:#cfc5be;border-radius:13px;padding:10px 8px;font-weight:900;cursor:pointer;white-space:nowrap}
-.profilebtn.active{border-color:var(--accent);background:#2b1d15;color:#ffd0a4;box-shadow:0 0 0 1px rgba(217,121,53,.12) inset}
-.profile{display:none}.profile.active{display:block}
-.profile .wrap{max-width:760px;margin:0 auto;padding:0 14px}
-.profile.kasia{--accent:#9d6bd6;--accent2:#cfb0ef;--blue:#9ab8ea}
-.profile.kasia body{}
-.profile.kasia .phase-title{border-color:#49375d;background:linear-gradient(135deg,#24182e,#151313)}
-.profile.kasia .phase-title span{color:#d7b8f3}
-.profile.kasia .phase-title.phase2{border-color:#42516a;background:linear-gradient(135deg,#17202c,#151313)}
-.profile.kasia .phase-title.phase2 span{color:#b9d1f2}
-.bookgrid{display:grid;gap:9px}.bookcard{padding:12px;border:1px solid #3a302b;border-radius:13px;background:#121111}.bookcard .equipname{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:#c4b7ae;font-weight:900}.bookcard strong{display:block;font-size:1.02rem;color:#f3d6ff;margin-top:4px}.bookcard small{display:block;color:#a99dac;margin-top:3px}
-.profile.kasia .navbtn.active{background:#23182c;color:#e5c9fb}
-.profile.kasia .action.primary{border-color:#5a3f73;background:#24182e;color:#e7ccfb}
-.profile.kasia .rankpill{background:#24182e;border-color:#5a3f73;color:#dec3f5}
-.profile.kasia .tree-node .pos{background:#24182e;border-color:#5a3f73;color:#dec3f5}
-.profile.kasia .flowitem .n{background:#24182e;border-color:#5a3f73;color:#dec3f5}
-.profile.kasia .priority li:before{background:#24182e;border-color:#5a3f73;color:#dec3f5}
-.install-banner{display:none;margin:10px 0 0;padding:11px 12px;border:1px solid #684329;background:#241a14;border-radius:13px;align-items:center;justify-content:space-between;gap:10px}
-.install-banner.show{display:flex}.install-banner span{font-size:.84rem;color:#e9ddd4}.install-banner button{border:1px solid #8b5733;background:#2e1d13;color:#ffd0a6;border-radius:10px;padding:8px 11px;font-weight:800;white-space:nowrap}
-@media(max-width:430px){.install-banner{align-items:stretch;flex-direction:column}.install-banner button{width:100%}}
-/* Pusta baza projektu: na tym etapie zostają wyłącznie działające zakładki dolne. */
-.empty-shell{min-height:calc(100dvh - 132px)}
-.empty-view{min-height:calc(100dvh - 132px)}
+/* ŚRODEK — tylko ta część może się przewijać */
+.content{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+.profile{display:none;min-height:100%}
+.profile.active{display:block}
+.view{display:none;min-height:100%}
+.view.active{display:block}
+
+/* DÓŁ — zawsze nieruchomy */
+.bottomnav{
+  flex:0 0 auto;
+  z-index:10;
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  background:rgba(13,12,12,.98);
+  border-top:1px solid #302825;
+  border-bottom:1px solid #302825;
+  padding:8px 8px 7px;
+}
+.bottomnav::-webkit-scrollbar{display:none}
+.navbtn{
+  flex:0 0 74px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  border-radius:18px;
+  padding:10px 7px 9px;
+  font-size:.76rem;
+  cursor:pointer;
+}
+.navbtn b{
+  display:block;
+  font-size:1.22rem;
+  line-height:1.05;
+  margin-bottom:5px;
+}
+.navbtn.active{
+  background:#2b1e17;
+  color:#ffd0aa;
+}
+
+/* Stałe miejsce na androidowy pasek gestów */
+.android-gesture-space{
+  flex:0 0 38px;
+  height:38px;
+  background:#0d0c0c;
+}
+
+@media(min-width:760px){
+  .bottomnav{justify-content:center}
+  .navbtn{flex-basis:84px}
+}
 </style>
 </head>
 <body>
-<div class="profile-switch" aria-label="Wybór buildu Kasi">
-  <div class="wrap">
+
+<header class="profile-switch" aria-label="Wybór buildu Kasi">
+  <div class="profile-switch-inner">
     <button class="profilebtn active" data-profile="kasia-early">Kasia Early Endgame</button>
     <button class="profilebtn" data-profile="kasia-unique">Kasia Unique Endgame</button>
   </div>
-</div>
+</header>
 
-<main class="empty-shell" aria-live="polite">
-  <div class="profile kasia active" data-profile-panel="kasia-early">
-    <section class="view empty-view active" data-tab-view="start" aria-label="Start"></section>
-    <section class="view empty-view" data-tab-view="skills" aria-label="Skille"></section>
-    <section class="view empty-view" data-tab-view="gear" aria-label="Gear"></section>
-    <section class="view empty-view" data-tab-view="aspects" aria-label="Aspekty"></section>
-    <section class="view empty-view" data-tab-view="extras" aria-label="Dodatki"></section>
-    <section class="view empty-view" data-tab-view="merc" aria-label="Pomocnik"></section>
-    <section class="view empty-view" data-tab-view="transition" aria-label="Endgame"></section>
-    <section class="view empty-view" data-tab-view="sources" aria-label="Info"></section>
+<main class="content" id="content" aria-live="polite">
+  <div class="profile active" data-profile-panel="kasia-early">
+    <section class="view active" data-tab-view="start"></section>
+    <section class="view" data-tab-view="skills"></section>
+    <section class="view" data-tab-view="gear"></section>
+    <section class="view" data-tab-view="aspects"></section>
+    <section class="view" data-tab-view="extras"></section>
+    <section class="view" data-tab-view="merc"></section>
+    <section class="view" data-tab-view="transition"></section>
+    <section class="view" data-tab-view="sources"></section>
   </div>
 
-  <div class="profile kasia" data-profile-panel="kasia-unique">
-    <section class="view empty-view active" data-tab-view="start" aria-label="Start"></section>
-    <section class="view empty-view" data-tab-view="skills" aria-label="Skille"></section>
-    <section class="view empty-view" data-tab-view="gear" aria-label="Gear"></section>
-    <section class="view empty-view" data-tab-view="aspects" aria-label="Aspekty"></section>
-    <section class="view empty-view" data-tab-view="extras" aria-label="Dodatki"></section>
-    <section class="view empty-view" data-tab-view="merc" aria-label="Pomocnik"></section>
-    <section class="view empty-view" data-tab-view="transition" aria-label="Endgame"></section>
-    <section class="view empty-view" data-tab-view="sources" aria-label="Info"></section>
+  <div class="profile" data-profile-panel="kasia-unique">
+    <section class="view active" data-tab-view="start"></section>
+    <section class="view" data-tab-view="skills"></section>
+    <section class="view" data-tab-view="gear"></section>
+    <section class="view" data-tab-view="aspects"></section>
+    <section class="view" data-tab-view="extras"></section>
+    <section class="view" data-tab-view="merc"></section>
+    <section class="view" data-tab-view="transition"></section>
+    <section class="view" data-tab-view="sources"></section>
   </div>
 </main>
 
@@ -142,65 +166,49 @@ section.view{display:none}.view.active{display:block}
   <button class="navbtn" data-tab="transition"><b>⇢</b>Endgame</button>
   <button class="navbtn" data-tab="sources"><b>i</b>Info</button>
 </nav>
+<div class="android-gesture-space" aria-hidden="true"></div>
 
 <script>
 (function(){
-  const TAB_KEY='diablo-companion-s15-empty-base-tab-v1-1';
-  const PROFILE_KEY='diablo-companion-s15-empty-base-profile-v1-1';
-  const allowedTabs=['start','skills','gear','aspects','extras','merc','transition','sources'];
-  const allowedProfiles=['kasia-early','kasia-unique'];
+  const TAB_KEY='diablo-companion-tab';
+  const PROFILE_KEY='diablo-companion-profile';
+  const tabs=['start','skills','gear','aspects','extras','merc','transition','sources'];
+  const profiles=['kasia-early','kasia-unique'];
+  const content=document.getElementById('content');
+
   let activeTab='start';
   let activeProfile='kasia-early';
-
-  try {
-    const savedTab=localStorage.getItem(TAB_KEY);
-    const savedProfile=localStorage.getItem(PROFILE_KEY);
-    if(savedTab && allowedTabs.includes(savedTab)) activeTab=savedTab;
-    if(savedProfile && allowedProfiles.includes(savedProfile)) activeProfile=savedProfile;
-  } catch(e) {}
+  try{
+    const t=localStorage.getItem(TAB_KEY);
+    const p=localStorage.getItem(PROFILE_KEY);
+    if(tabs.includes(t)) activeTab=t;
+    if(profiles.includes(p)) activeProfile=p;
+  }catch(e){}
 
   function openTab(tab, scroll=true){
-    if(!allowedTabs.includes(tab)) tab='start';
-    document.querySelectorAll('.profile[data-profile-panel]').forEach(profile=>{
-      profile.querySelectorAll('.view').forEach(v=>{
-        v.classList.toggle('active', v.dataset.tabView===tab);
-      });
-    });
-    document.querySelectorAll('.navbtn').forEach(b=>{
-      const isActive=b.dataset.tab===tab;
-      b.classList.toggle('active', isActive);
-      b.setAttribute('aria-current', isActive ? 'page' : 'false');
-    });
+    if(!tabs.includes(tab)) tab='start';
+    document.querySelectorAll('[data-tab-view]').forEach(v=>v.classList.toggle('active',v.dataset.tabView===tab));
+    document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
     activeTab=tab;
-    try { localStorage.setItem(TAB_KEY, tab); } catch(e) {}
-    if(scroll) window.scrollTo({top:0, behavior:'smooth'});
+    try{localStorage.setItem(TAB_KEY,tab)}catch(e){}
+    if(scroll) content.scrollTo({top:0,behavior:'auto'});
   }
 
   function openProfile(profile, scroll=true){
-    if(!allowedProfiles.includes(profile)) profile='kasia-early';
-    document.querySelectorAll('.profile[data-profile-panel]').forEach(panel=>{
-      panel.classList.toggle('active', panel.dataset.profilePanel===profile);
-    });
-    document.querySelectorAll('.profilebtn').forEach(btn=>{
-      const isActive=btn.dataset.profile===profile;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
+    if(!profiles.includes(profile)) profile='kasia-early';
+    document.querySelectorAll('[data-profile-panel]').forEach(p=>p.classList.toggle('active',p.dataset.profilePanel===profile));
+    document.querySelectorAll('.profilebtn').forEach(b=>b.classList.toggle('active',b.dataset.profile===profile));
     activeProfile=profile;
-    try { localStorage.setItem(PROFILE_KEY, profile); } catch(e) {}
-    openTab(activeTab, false);
-    if(scroll) window.scrollTo({top:0, behavior:'smooth'});
+    try{localStorage.setItem(PROFILE_KEY,profile)}catch(e){}
+    openTab(activeTab,false);
+    if(scroll) content.scrollTo({top:0,behavior:'auto'});
   }
 
-  document.querySelectorAll('.navbtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>openTab(btn.dataset.tab, true));
-  });
-  document.querySelectorAll('.profilebtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>openProfile(btn.dataset.profile, true));
-  });
+  document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab,true)));
+  document.querySelectorAll('.profilebtn').forEach(b=>b.addEventListener('click',()=>openProfile(b.dataset.profile,true)));
 
-  openProfile(activeProfile, false);
-  openTab(activeTab, false);
+  openProfile(activeProfile,false);
+  openTab(activeTab,false);
 })();
 </script>
 </body>
