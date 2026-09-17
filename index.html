@@ -18,11 +18,18 @@ button{font:inherit}
 .content{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;padding:14px}
 .profile{display:none}.profile.active{display:block}.view{display:none}.view.active{display:block}
 .build-meta{max-width:760px;margin:0 auto 8px;padding:0 2px;color:#8f8580;font-size:.72rem;line-height:1.25}
-.start-card,.rotation-card{max-width:760px;margin:0 auto;background:#141212;border:1px solid #302825;border-radius:18px;padding:14px 12px 16px}
+.start-card,.rotation-card,.skills-card{max-width:760px;margin:0 auto;background:#141212;border:1px solid #302825;border-radius:18px;padding:14px 12px 16px}
 .rotation-card{margin-top:14px}
-.start-card h2,.rotation-card h2{margin:0 0 14px;font-size:1rem;color:#f1e8e1}
+.start-card h2,.rotation-card h2,.skills-card h2{margin:0 0 14px;font-size:1rem;color:#f1e8e1}
 .skill-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .skill-slot{min-width:0;min-height:64px;border:1px solid #5a4e47;background:linear-gradient(180deg,#292421,#24201e);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;color:#f0e7e0;font-size:.82rem;line-height:1.1;font-weight:800;overflow-wrap:anywhere;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+.skills-list{display:grid;gap:9px}
+.skills-row{min-width:0;display:grid;grid-template-columns:40px minmax(0,1fr) 30px;gap:11px;align-items:center;background:#11100f;border:1px solid #3b332e;border-radius:14px;padding:10px 11px}
+.skill-icon{width:38px;height:38px;border-radius:8px;border:1px solid #5a4e47;background-image:url('assets/skills.svg');background-repeat:no-repeat;background-size:228px 38px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
+.skill-icon.i0{background-position:0 0}.skill-icon.i1{background-position:-38px 0}.skill-icon.i2{background-position:-76px 0}.skill-icon.i3{background-position:-114px 0}.skill-icon.i4{background-position:-152px 0}.skill-icon.i5{background-position:-190px 0}
+.skills-name{min-width:0;font-size:.91rem;font-weight:850;color:#f1e8e1;line-height:1.18;overflow-wrap:anywhere}
+.skills-pos{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#2b1e17;border:1px solid #70482f;color:#ffd0aa;font-size:.75rem;font-weight:900}
+.skills-note{margin:12px 2px 0;color:#9d928b;font-size:.78rem;line-height:1.35}
 .rotation-list{display:grid;gap:9px}
 .rotation-step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;background:#11100f;border:1px solid #3b332e;border-radius:14px;padding:12px}
 .rotation-num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#2b1e17;border:1px solid #70482f;color:#ffd0aa;font-weight:900}
@@ -32,7 +39,7 @@ button{font:inherit}
 .bottomnav{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:8px 8px 7px}.bottomnav::-webkit-scrollbar{display:none}
 .navbtn{flex:0 0 74px;border:0;background:transparent;color:var(--muted);border-radius:18px;padding:10px 7px 9px;font-size:.76rem;cursor:pointer}
 .navbtn b{display:block;font-size:1.22rem;line-height:1.05;margin-bottom:5px}.navbtn.active{background:#2b1e17;color:#ffd0aa}
-@media(max-width:380px){.skill-strip{gap:6px}.start-card,.rotation-card{padding-left:9px;padding-right:9px}.skill-slot{font-size:.78rem}.rotation-step{grid-template-columns:38px 1fr;gap:9px;padding:10px}.rotation-main{font-size:.87rem}.rotation-sub{font-size:.77rem}}
+@media(max-width:380px){.skill-strip{gap:6px}.start-card,.rotation-card,.skills-card{padding-left:9px;padding-right:9px}.skill-slot{font-size:.78rem}.rotation-step{grid-template-columns:38px 1fr;gap:9px;padding:10px}.rotation-main{font-size:.87rem}.rotation-sub{font-size:.77rem}.skills-row{grid-template-columns:38px minmax(0,1fr) 28px;gap:9px;padding:9px}.skill-icon{width:36px;height:36px;background-size:216px 36px}.skill-icon.i0{background-position:0 0}.skill-icon.i1{background-position:-36px 0}.skill-icon.i2{background-position:-72px 0}.skill-icon.i3{background-position:-108px 0}.skill-icon.i4{background-position:-144px 0}.skill-icon.i5{background-position:-180px 0}.skills-name{font-size:.86rem}}
 @media(min-width:760px){.bottomnav{justify-content:center}.navbtn{flex-basis:84px}.skill-slot{font-size:.9rem}}
 </style>
 </head>
@@ -69,7 +76,21 @@ button{font:inherit}
 </div>
 </div>
 </section>
-<section class="view" data-tab-view="skills"></section><section class="view" data-tab-view="gear"></section><section class="view" data-tab-view="aspects"></section><section class="view" data-tab-view="extras"></section><section class="view" data-tab-view="merc"></section><section class="view" data-tab-view="transition"></section><section class="view" data-tab-view="sources"></section>
+<section class="view" data-tab-view="skills">
+<div class="build-meta">Kasia Early Endgame · Early Game Army · Kay</div>
+<div class="skills-card">
+<h2>Skille</h2>
+<div class="skills-list">
+<div class="skills-row"><span class="skill-icon i0" aria-hidden="true"></span><div class="skills-name">Armia Umarłych</div><div class="skills-pos">1</div></div>
+<div class="skills-row"><span class="skill-icon i1" aria-hidden="true"></span><div class="skills-name">Szkieletowi Wojownicy</div><div class="skills-pos">2</div></div>
+<div class="skills-row"><span class="skill-icon i2" aria-hidden="true"></span><div class="skills-name">Szkieletowi Magowie</div><div class="skills-pos">3</div></div>
+<div class="skills-row"><span class="skill-icon i3" aria-hidden="true"></span><div class="skills-name">Wybuch Zwłok</div><div class="skills-pos">4</div></div>
+<div class="skills-row"><span class="skill-icon i4" aria-hidden="true"></span><div class="skills-name">Rozdarcie</div><div class="skills-pos">5</div></div>
+<div class="skills-row"><span class="skill-icon i5" aria-hidden="true"></span><div class="skills-name">Golem</div><div class="skills-pos">6</div></div>
+</div>
+<div class="skills-note">Pasek Early Game Army. Bez dopisywania rang ani dodatkowych węzłów, dopóki nie mamy ich potwierdzonych 1:1 z polskiego klienta Diablo IV.</div>
+</div>
+</section><section class="view" data-tab-view="gear"></section><section class="view" data-tab-view="aspects"></section><section class="view" data-tab-view="extras"></section><section class="view" data-tab-view="merc"></section><section class="view" data-tab-view="transition"></section><section class="view" data-tab-view="sources"></section>
 </div>
 <div class="profile" data-profile-panel="kasia-unique">
 <section class="view active" data-tab-view="start"></section><section class="view" data-tab-view="skills"></section><section class="view" data-tab-view="gear"></section><section class="view" data-tab-view="aspects"></section><section class="view" data-tab-view="extras"></section><section class="view" data-tab-view="merc"></section><section class="view" data-tab-view="transition"></section><section class="view" data-tab-view="sources"></section>
