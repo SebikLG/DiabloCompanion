@@ -17,15 +17,21 @@ button{font:inherit}
 .profilebtn.active{border-color:#c96e35;background:#2a1d16;color:#ffd2ad;box-shadow:0 0 0 1px rgba(217,121,53,.18) inset}
 .content{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;padding:14px}
 .profile{display:none}.profile.active{display:block}.view{display:none}.view.active{display:block}
-.start-card{max-width:760px;margin:0 auto;background:#141212;border:1px solid #302825;border-radius:18px;padding:14px 12px 16px}
-.start-card h2{margin:0 0 14px;font-size:1rem;color:#f1e8e1}
+.start-card,.rotation-card{max-width:760px;margin:0 auto;background:#141212;border:1px solid #302825;border-radius:18px;padding:14px 12px 16px}
+.rotation-card{margin-top:14px}
+.start-card h2,.rotation-card h2{margin:0 0 14px;font-size:1rem;color:#f1e8e1}
 .skill-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .skill-slot{min-width:0;min-height:64px;border:1px solid #5a4e47;background:linear-gradient(180deg,#292421,#24201e);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;color:#f0e7e0;font-size:.82rem;line-height:1.1;font-weight:800;overflow-wrap:anywhere;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+.rotation-list{display:grid;gap:9px}
+.rotation-step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;background:#11100f;border:1px solid #3b332e;border-radius:14px;padding:12px}
+.rotation-num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#2b1e17;border:1px solid #70482f;color:#ffd0aa;font-weight:900}
+.rotation-main{font-size:.92rem;font-weight:850;color:#f1e8e1;line-height:1.3}
+.rotation-sub{margin-top:4px;font-size:.81rem;color:#aa9f97;line-height:1.35}
 .bottom-shell{min-width:0;background:rgba(13,12,12,.99);border-top:1px solid #302825;padding-bottom:max(30px,env(safe-area-inset-bottom));z-index:5}
 .bottomnav{display:flex;gap:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:8px 8px 7px}.bottomnav::-webkit-scrollbar{display:none}
 .navbtn{flex:0 0 74px;border:0;background:transparent;color:var(--muted);border-radius:18px;padding:10px 7px 9px;font-size:.76rem;cursor:pointer}
 .navbtn b{display:block;font-size:1.22rem;line-height:1.05;margin-bottom:5px}.navbtn.active{background:#2b1e17;color:#ffd0aa}
-@media(max-width:380px){.skill-strip{gap:6px}.start-card{padding-left:9px;padding-right:9px}.skill-slot{font-size:.78rem}}
+@media(max-width:380px){.skill-strip{gap:6px}.start-card,.rotation-card{padding-left:9px;padding-right:9px}.skill-slot{font-size:.78rem}.rotation-step{grid-template-columns:38px 1fr;gap:9px;padding:10px}.rotation-main{font-size:.87rem}.rotation-sub{font-size:.77rem}}
 @media(min-width:760px){.bottomnav{justify-content:center}.navbtn{flex-basis:84px}.skill-slot{font-size:.9rem}}
 </style>
 </head>
@@ -47,6 +53,17 @@ button{font:inherit}
 <div class="skill-slot">Wybuch Zwłok</div>
 <div class="skill-slot">Rozdarcie</div>
 <div class="skill-slot">Golem</div>
+</div>
+</div>
+<div class="rotation-card">
+<h2>Rotacja bez kombinowania</h2>
+<div class="rotation-list">
+<div class="rotation-step"><div class="rotation-num">1</div><div><div class="rotation-main">Rozdarcie — wejście lub przejście do kolejnej grupy.</div><div class="rotation-sub">W tym wariancie służy też jako umiejętność mobilności.</div></div></div>
+<div class="rotation-step"><div class="rotation-num">2</div><div><div class="rotation-main">Szkieletowi Wojownicy — używaj aktywnej komendy, gdy jest gotowa.</div></div></div>
+<div class="rotation-step"><div class="rotation-num">3</div><div><div class="rotation-main">Szkieletowi Magowie — używaj aktywnej komendy, gdy jest gotowa.</div></div></div>
+<div class="rotation-step"><div class="rotation-num">4</div><div><div class="rotation-main">Golem — używaj aktywnej komendy, gdy jest gotowa.</div></div></div>
+<div class="rotation-step"><div class="rotation-num">5</div><div><div class="rotation-main">Wybuch Zwłok — detonuj zwłoki, gdy potrzebujesz Esencji.</div><div class="rotation-sub">Ten wariant używa Wybuchu Zwłok właśnie do zasilania Esencji.</div></div></div>
+<div class="rotation-step"><div class="rotation-num">6</div><div><div class="rotation-main">Armia Umarłych — elita, boss albo duża grupa.</div></div></div>
 </div>
 </div>
 </section>
