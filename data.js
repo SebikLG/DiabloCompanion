@@ -46,6 +46,8 @@ if(earlyTalismansView){
 }
 const extrasNav=document.querySelector('.navbtn[data-tab="extras"]');
 if(extrasNav){extrasNav.innerHTML='<b>✧</b>Talizmany';}
+const mercNav=document.querySelector('.navbtn[data-tab="merc"]');
+if(mercNav){mercNav.innerHTML='<b>♜</b>Paragony';}
 const talismanUiStyle=document.createElement('style');
 talismanUiStyle.textContent='.talisman-tree{max-width:760px;margin:0 auto;display:grid;gap:14px}.talisman-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.talisman-head{display:block;padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.talisman-name{font-size:.96rem;font-weight:950;line-height:1.25}.talisman-bonus{padding:13px 14px;color:#efe7df;font-size:.88rem;font-weight:800;line-height:1.35}';
 document.head.appendChild(talismanUiStyle);
