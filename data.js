@@ -109,7 +109,7 @@ const earlyEndgameView=document.querySelector('[data-profile-panel="kasia-early"
 const endgameNav=document.querySelector('.navbtn[data-tab="transition"]');
 const infoNav=document.querySelector('.navbtn[data-tab="sources"]');
 if(endgameNav){endgameNav.innerHTML='<b>◆</b>Endgame';}
-if(infoNav){infoNav.remove();}
+if(infoNav){infoNav.innerHTML='<b>✦</b>Odpryski';}
 if(earlyEndgameView){
   const endgameUniques=["Podkorona","Bryczesy Krwawego Księżyca","Sanguivor, Ostrze Zira"];
   const endgameAspects=[
@@ -216,3 +216,32 @@ document.head.appendChild(sebaAspectStyle);
 const sebaAquaStyle=document.createElement('style');
 sebaAquaStyle.textContent='[data-profile-panel="seba-endgame"] .seba-gear-head,[data-profile-panel="seba-endgame"] .aspect-head,[data-profile-panel="seba-endgame"] .skill-card-head,[data-profile-panel="seba-endgame"] .talisman-head,[data-profile-panel="seba-endgame"] .paragon-head,[data-profile-panel="seba-endgame"] .endgame-intro-head{background:#1d4648!important;border-bottom-color:#2f6f72!important;color:#d8f4f2!important}[data-profile-panel="seba-endgame"] .seba-gear-slot,[data-profile-panel="seba-endgame"] .aspect-slot,[data-profile-panel="seba-endgame"] .skill-card-title,[data-profile-panel="seba-endgame"] .talisman-name,[data-profile-panel="seba-endgame"] .paragon-title,[data-profile-panel="seba-endgame"] .paragon-glyph{color:#d8f4f2!important;font-weight:600!important}[data-profile-panel="seba-endgame"] .seba-gear-aspect{color:#8fc9c7}[data-profile-panel="seba-endgame"] .seba-gear-tab.active{border-color:#397f82;background:#162c2e;color:#bfe7e5;box-shadow:0 0 0 1px rgba(57,127,130,.16) inset}[data-profile-panel="seba-endgame"] .seba-affix-title{color:#6fb8b5;font-weight:600!important}[data-profile-panel="seba-endgame"] .seba-affix{font-weight:400!important}[data-profile-panel="seba-endgame"] .seba-affix span{border-color:#356a6c;color:#9fd2cf;background:#142729;font-weight:600!important}.profilebtn[data-profile="seba-endgame"].active{border-color:#397f82;background:#162c2e;color:#bfe7e5;box-shadow:0 0 0 1px rgba(57,127,130,.16) inset}';
 document.head.appendChild(sebaAquaStyle);
+
+
+const earlySoulSplintersView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="sources"]');
+if(earlySoulSplintersView){
+  const soulSplinters=[
+    {
+      name:"Odprysk Piekielnego Ognia",
+      note:"Wczesny zestaw po 70. poziomie",
+      effect:"+35 pkt. odporności na wszystkie żywioły. Zadajesz o 20%[x] więcej obrażeń, ale tracisz 100% szansy na trafienie krytyczne.",
+      why:"Daje duży, prosty mnożnik obrażeń bez kary do Esencji, ruchu ani odporności."
+    },
+    {
+      name:"Odprysk Czarnego Kamienia Dusz",
+      note:"Wczesny zestaw po 70. poziomie",
+      effect:"+7 do wszystkich współczynników. Zabijanie wrogów pochłania duszę na 10 sek. Każda dusza zwiększa zadawane obrażenia o 1,0%, ale także zwiększa otrzymywane obrażenia o 1%. Efekt kumuluje się do 200 razy i nie odświeża czasu trwania.",
+      why:"Skaluje obrażenia podczas czyszczenia grup bez zwiększania kosztu Esencji ani spowalniania postaci."
+    },
+    {
+      name:"Odprysk Potępienia",
+      note:"Używaj najlepszej posiadanej jakości",
+      effect:"Zabicie zgrai elitarnych wrogów zwiększa Potworną Siłę o 1 oraz zdobywane doświadczenie o 25%. Czas działania rośnie wraz z jakością odprysku.",
+      why:"Po 70. poziomie nadal przyspiesza rozwój Paragonów, a nie nakłada kary do Esencji, szybkości ruchu ani odporności."
+    }
+  ];
+  earlySoulSplintersView.innerHTML='<div class="soul-wrap"><div class="build-meta">Kasia Early Endgame · Odpryski Duszy do biżuterii</div><div class="soul-note">Stały zestaw po 70. poziomie. Nie pokazujemy tutaj Odprysku Zła z Planów Wojennych.</div><div class="soul-grid">'+soulSplinters.map(it=>`<article class="soul-card"><div class="soul-head"><div class="soul-name">${it.name}</div><div class="soul-sub">${it.note}</div></div><div class="soul-body"><div class="soul-effect">${it.effect}</div><div class="soul-why"><strong>Dlaczego:</strong> ${it.why}</div></div></article>`).join('')+'</div></div>';
+}
+const soulStyle=document.createElement('style');
+soulStyle.textContent='.soul-wrap{max-width:760px;margin:0 auto}.soul-note{margin:0 2px 13px;color:#9f948c;font-size:.77rem;line-height:1.4}.soul-grid{display:grid;gap:14px}.soul-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.soul-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.soul-name{font-size:.96rem;font-weight:600;line-height:1.25}.soul-sub{margin-top:4px;font-size:.75rem;font-weight:600;color:#6c5642}.soul-body{padding:13px 14px}.soul-effect{color:#e8dfd8;font-size:.84rem;line-height:1.45}.soul-why{margin-top:8px;color:#a99d95;font-size:.79rem;line-height:1.42}.soul-why strong{color:#d9c7b8;font-weight:600}';
+document.head.appendChild(soulStyle);
