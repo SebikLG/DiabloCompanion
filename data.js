@@ -132,3 +132,43 @@ if(earlyEndgameView){
 const endgameStyle=document.createElement('style');
 endgameStyle.textContent='.endgame-wrap{max-width:760px;margin:0 auto;display:grid;gap:14px}.endgame-intro,.endgame-card,.endgame-ready{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.endgame-intro-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118;font-size:.98rem;font-weight:950}.endgame-intro-body{padding:13px 14px;color:#e8dfd8;font-size:.86rem;line-height:1.45}.endgame-intro-body strong{color:#ffd7b6}.endgame-section-title{margin-top:4px;padding:0 2px;color:#f1e8e1;font-size:.92rem;font-weight:950}.endgame-grid{display:grid;gap:10px}.endgame-card{padding:0}.endgame-card-head{padding:7px 12px;border-bottom:1px solid #40382f;font-size:.69rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase}.endgame-card-head.unique{background:#211b14;color:#e4c892}.endgame-card-head.aspect{background:#21160f;color:#ef9b54}.endgame-card-name{padding:11px 13px 6px;color:#f3eee9;font-size:.91rem;font-weight:950;line-height:1.3}.endgame-card-desc{padding:0 13px 12px;color:#b7aba1;font-size:.8rem;line-height:1.4}.endgame-ready{padding:13px 14px;border-color:#725036;color:#dfd4ca;font-size:.86rem;line-height:1.4}.endgame-ready strong{color:#ffd0aa}';
 document.head.appendChild(endgameStyle);
+
+
+const sebaGearView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="gear"]');
+if(sebaGearView){
+  const sebaStarterGear=[
+    {slot:"Hełm",aspect:"Aspect of Arcane Ward",effect:"Umiejętności Mistrzostwa zapewniają 30% redukcji obrażeń, gdy ich efekt jest aktywny.",why:"Piorun Kulisty jest umiejętnością Mistrzostwa, więc defensywa działa naturalnie podczas walki.",affixes:[]},
+    {slot:"Napierśnik",aspect:"Aspect of Concentration",effect:"Użycie umiejętności Przywołania zapewnia 30% redukcji obrażeń na 5 sek.",why:"To nasz legendarny zamiennik za Stealth. Hydra i Familiar pozwalają regularnie odświeżać efekt.",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"]},
+    {slot:"Rękawice",aspect:"Aspect of Splintering Energy",effect:"Umiejętności Porażenia zyskują 180%[x] obrażeń; premia maleje przy kolejnych trafieniach.",why:"Zostawiamy aspekt Lurkina — bezpośrednio wzmacnia główne źródło obrażeń.",affixes:[]},
+    {slot:"Spodnie",aspect:"Mage-Lord's Aspect",effect:"Trafienie umiejętnością Porażenia przeciwnika z bliska zapewnia 45% redukcji obrażeń na 6 sek.",why:"Ball Lightning gra blisko przeciwników, więc warunek łatwo utrzymać.",affixes:[]},
+    {slot:"Buty",aspect:"Aspect of Shredding Blades",effect:"Obrażenia umiejętności Przywołania nakładają Vulnerable na 4 sek., a obrażenia przeciw Vulnerable rosną o 20%[x].",why:"Hydra i Familiar nakładają Vulnerable bez dokładania osobnej akcji do rotacji.",affixes:[]},
+    {slot:"Amulet",aspect:"Lingering Aspect",effect:"Umiejętności Mistrzostwa zyskują 40%[x] obrażeń za każdą sekundę aktywności.",why:"Krążące Pioruny Kuliste pozostają aktywne, więc aspekt skaluje dokładnie naszą główną umiejętność.",affixes:[]},
+    {slot:"Pierścień 1",aspect:"Prodigy's Aspect",effect:"Użycie umiejętności z czasem odnowienia zapewnia 30 regeneracji many na 4 sek.",why:"Jeden z głównych silników many — build regularnie używa Teleportu, Pancerza Lodu i innych cooldownów.",affixes:[]},
+    {slot:"Pierścień 2",aspect:"Vulpine's Aspect",effect:"Podczas działania Bariery zyskujesz 25 podstawowego zasobu na sekundę.",why:"Pancerz Lodu zapewnia Barierę, więc dostajemy drugi mocny filar pod spamowanie Pioruna Kulistego.",affixes:[]},
+    {slot:"Laska 2H",aspect:"Storm Splitter's Aspect",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"To nasz legendarny zamiennik za Insight — bezpośrednio wzmacnia Ball Lightning bez zmiany sposobu gry.",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
+  ];
+  const renderSebaStarter=()=>'<div class="seba-gear-list">'+sebaStarterGear.map(it=>`<article class="seba-gear-card"><div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div><div class="seba-gear-aspect">${it.aspect}</div></div><div class="seba-gear-body"><div class="seba-gear-effect">${it.effect}</div><div class="seba-gear-why"><strong>Dlaczego:</strong> ${it.why}</div>${it.affixes.length?`<div class="seba-affix-title">Afiksy</div><div class="seba-affixes">${it.affixes.map((a,i)=>`<div class="seba-affix"><span>${i+1}</span>${a}</div>`).join('')}</div>`:'<div class="seba-affix-pending">Afiksy uzupełnimy w kroku 2 z Mobalytics.</div>'}</div></article>`).join('')+'</div>';
+  sebaGearView.innerHTML=`<div class="seba-gear-wrap">
+    <div class="build-meta">Seba Endgame · Ball Lightning Zeus S15 · baza: Lurkin</div>
+    <div class="seba-gear-tabs" role="tablist" aria-label="Wariant ekwipunku">
+      <button class="seba-gear-tab active" type="button" data-seba-gear="starter">Starter</button>
+      <button class="seba-gear-tab" type="button" data-seba-gear="ancestral">Ancestral</button>
+      <button class="seba-gear-tab" type="button" data-seba-gear="mythic">Mythic</button>
+    </div>
+    <div class="seba-gear-panel active" data-seba-gear-panel="starter">${renderSebaStarter()}</div>
+    <div class="seba-gear-panel" data-seba-gear-panel="ancestral"><article class="seba-empty"><strong>Ancestral</strong><br>Uzupełnimy w następnym kroku na podstawie wariantu Lurkina.</article></div>
+    <div class="seba-gear-panel" data-seba-gear-panel="mythic"><article class="seba-empty"><strong>Mythic</strong><br>Uzupełnimy później jako finalny wariant buildu.</article></div>
+  </div>`;
+  const tabs=sebaGearView.querySelectorAll('.seba-gear-tab');
+  const panels=sebaGearView.querySelectorAll('.seba-gear-panel');
+  const openSebaGear=name=>{
+    tabs.forEach(b=>b.classList.toggle('active',b.dataset.sebaGear===name));
+    panels.forEach(p=>p.classList.toggle('active',p.dataset.sebaGearPanel===name));
+    try{localStorage.setItem('diablo-seba-gear-variant',name)}catch(e){}
+  };
+  tabs.forEach(b=>b.addEventListener('click',()=>openSebaGear(b.dataset.sebaGear)));
+  try{const saved=localStorage.getItem('diablo-seba-gear-variant');if(['starter','ancestral','mythic'].includes(saved))openSebaGear(saved)}catch(e){}
+}
+const sebaGearStyle=document.createElement('style');
+sebaGearStyle.textContent='.seba-gear-wrap{max-width:760px;margin:0 auto}.seba-gear-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}.seba-gear-tab{border:1px solid #51483d;background:#171511;color:#b9ada4;border-radius:13px;padding:11px 8px;font-size:.82rem;font-weight:950;cursor:pointer}.seba-gear-tab.active{border-color:#c96e35;background:#2b1e17;color:#ffd0aa;box-shadow:0 0 0 1px rgba(217,121,53,.18) inset}.seba-gear-panel{display:none}.seba-gear-panel.active{display:block}.seba-gear-list{display:grid;gap:16px}.seba-gear-card{background:#151310;border:1px solid #51483d;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.seba-gear-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.seba-gear-slot{font-size:1rem;font-weight:950}.seba-gear-aspect{margin-top:4px;font-size:.82rem;font-weight:900;color:#65472f}.seba-gear-body{padding:13px 14px}.seba-gear-effect{color:#efe7df;font-size:.86rem;font-weight:800;line-height:1.4}.seba-gear-why{margin-top:8px;color:#b8aca3;font-size:.8rem;line-height:1.42}.seba-gear-why strong{color:#d9c7b8}.seba-affix-title{margin-top:13px;color:#d97935;font-size:.69rem;letter-spacing:.06em;text-transform:uppercase;font-weight:950}.seba-affixes{display:grid;gap:7px;margin-top:7px}.seba-affix{display:grid;grid-template-columns:25px minmax(0,1fr);gap:9px;align-items:center;background:#171511;border:1px solid #403a33;border-radius:11px;padding:9px 10px;color:#efe7df;font-size:.84rem;font-weight:800}.seba-affix span{width:24px;height:24px;border-radius:7px;background:#2a211b;border:1px solid #654833;color:#e8b58e;display:grid;place-items:center;font-size:.7rem;font-weight:900}.seba-affix-pending{margin-top:12px;color:#887d75;font-size:.76rem;font-style:italic}.seba-empty{background:#151310;border:1px solid #51483d;border-radius:16px;padding:16px;color:#b7aba1;font-size:.86rem;line-height:1.45}.seba-empty strong{color:#f1e8e1}';
+document.head.appendChild(sebaGearStyle);
