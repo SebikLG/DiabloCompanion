@@ -177,14 +177,14 @@ document.head.appendChild(sebaGearStyle);
 const sebaGearOnlyView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="gear"]');
 if(sebaGearOnlyView){
   const starterGearOnly=[
-    {slot:"Hełm",affixes:[]},
+    {slot:"Hełm",affixes:["Redukcja czasu odnowienia","Inteligencja","Maksymalne zdrowie","Regeneracja many"]},
     {slot:"Napierśnik",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"]},
-    {slot:"Rękawice",affixes:[]},
-    {slot:"Spodnie",affixes:[]},
-    {slot:"Buty",affixes:[]},
-    {slot:"Amulet",affixes:[]},
-    {slot:"Pierścień 1",affixes:[]},
-    {slot:"Pierścień 2",affixes:[]},
+    {slot:"Rękawice",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Inteligencja"]},
+    {slot:"Spodnie",affixes:["Inteligencja","Maksymalne zdrowie","Pancerz","Regeneracja many"]},
+    {slot:"Buty",affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego"]},
+    {slot:"Amulet",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń od Błyskawic","Inteligencja"]},
+    {slot:"Pierścień 1",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"]},
+    {slot:"Pierścień 2",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"]},
     {slot:"Laska 2H",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
   ];
   const starterPanel=sebaGearOnlyView.querySelector('[data-seba-gear-panel="starter"]');
