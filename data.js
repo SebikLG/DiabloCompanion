@@ -172,3 +172,42 @@ if(sebaGearView){
 const sebaGearStyle=document.createElement('style');
 sebaGearStyle.textContent='.seba-gear-wrap{max-width:760px;margin:0 auto}.seba-gear-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}.seba-gear-tab{border:1px solid #51483d;background:#171511;color:#b9ada4;border-radius:13px;padding:11px 8px;font-size:.82rem;font-weight:950;cursor:pointer}.seba-gear-tab.active{border-color:#c96e35;background:#2b1e17;color:#ffd0aa;box-shadow:0 0 0 1px rgba(217,121,53,.18) inset}.seba-gear-panel{display:none}.seba-gear-panel.active{display:block}.seba-gear-list{display:grid;gap:16px}.seba-gear-card{background:#151310;border:1px solid #51483d;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.seba-gear-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.seba-gear-slot{font-size:1rem;font-weight:950}.seba-gear-aspect{margin-top:4px;font-size:.82rem;font-weight:900;color:#65472f}.seba-gear-body{padding:13px 14px}.seba-gear-effect{color:#efe7df;font-size:.86rem;font-weight:800;line-height:1.4}.seba-gear-why{margin-top:8px;color:#b8aca3;font-size:.8rem;line-height:1.42}.seba-gear-why strong{color:#d9c7b8}.seba-affix-title{margin-top:13px;color:#d97935;font-size:.69rem;letter-spacing:.06em;text-transform:uppercase;font-weight:950}.seba-affixes{display:grid;gap:7px;margin-top:7px}.seba-affix{display:grid;grid-template-columns:25px minmax(0,1fr);gap:9px;align-items:center;background:#171511;border:1px solid #403a33;border-radius:11px;padding:9px 10px;color:#efe7df;font-size:.84rem;font-weight:800}.seba-affix span{width:24px;height:24px;border-radius:7px;background:#2a211b;border:1px solid #654833;color:#e8b58e;display:grid;place-items:center;font-size:.7rem;font-weight:900}.seba-affix-pending{margin-top:12px;color:#887d75;font-size:.76rem;font-style:italic}.seba-empty{background:#151310;border:1px solid #51483d;border-radius:16px;padding:16px;color:#b7aba1;font-size:.86rem;line-height:1.45}.seba-empty strong{color:#f1e8e1}';
 document.head.appendChild(sebaGearStyle);
+
+
+const sebaGearOnlyView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="gear"]');
+if(sebaGearOnlyView){
+  const starterGearOnly=[
+    {slot:"Hełm",affixes:[]},
+    {slot:"Napierśnik",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"]},
+    {slot:"Rękawice",affixes:[]},
+    {slot:"Spodnie",affixes:[]},
+    {slot:"Buty",affixes:[]},
+    {slot:"Amulet",affixes:[]},
+    {slot:"Pierścień 1",affixes:[]},
+    {slot:"Pierścień 2",affixes:[]},
+    {slot:"Laska 2H",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
+  ];
+  const starterPanel=sebaGearOnlyView.querySelector('[data-seba-gear-panel="starter"]');
+  if(starterPanel){
+    starterPanel.innerHTML='<div class="seba-gear-list">'+starterGearOnly.map(it=>`<article class="seba-gear-card"><div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div></div><div class="seba-gear-body">${it.affixes.length?`<div class="seba-affix-title">Afiksy</div><div class="seba-affixes">${it.affixes.map((a,i)=>`<div class="seba-affix"><span>${i+1}</span>${a}</div>`).join('')}</div>`:'<div class="seba-affix-pending">Afiksy uzupełnimy w kroku 2 z Mobalytics.</div>'}</div></article>`).join('')+'</div>';
+  }
+}
+
+const sebaAspectsView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="aspects"]');
+if(sebaAspectsView){
+  const sebaStarterAspects=[
+    {slot:"Hełm",name:"Aspect of Arcane Ward",effect:"Umiejętności Mistrzostwa zapewniają 30% redukcji obrażeń, gdy ich efekt jest aktywny.",why:"Piorun Kulisty jest umiejętnością Mistrzostwa, więc defensywa działa naturalnie podczas walki."},
+    {slot:"Napierśnik",name:"Aspect of Concentration",effect:"Użycie umiejętności Przywołania zapewnia 30% redukcji obrażeń na 5 sek.",why:"Nasz legendarny zamiennik za Stealth. Hydra i Familiar pozwalają regularnie odświeżać efekt."},
+    {slot:"Rękawice",name:"Aspect of Splintering Energy",effect:"Umiejętności Porażenia zyskują 180%[x] obrażeń; premia maleje przy kolejnych trafieniach.",why:"Aspekt z buildu Lurkina — bezpośrednio wzmacnia główne źródło obrażeń."},
+    {slot:"Spodnie",name:"Mage-Lord's Aspect",effect:"Trafienie umiejętnością Porażenia przeciwnika z bliska zapewnia 45% redukcji obrażeń na 6 sek.",why:"Ball Lightning gra blisko przeciwników, więc warunek łatwo utrzymać."},
+    {slot:"Buty",name:"Aspect of Shredding Blades",effect:"Obrażenia umiejętności Przywołania nakładają Vulnerable na 4 sek., a obrażenia przeciw Vulnerable rosną o 20%[x].",why:"Hydra i Familiar nakładają Vulnerable bez dokładania osobnej akcji do rotacji."},
+    {slot:"Amulet",name:"Lingering Aspect",effect:"Umiejętności Mistrzostwa zyskują 40%[x] obrażeń za każdą sekundę aktywności.",why:"Krążące Pioruny Kuliste pozostają aktywne, więc aspekt skaluje główną umiejętność."},
+    {slot:"Pierścień 1",name:"Prodigy's Aspect",effect:"Użycie umiejętności z czasem odnowienia zapewnia 30 regeneracji many na 4 sek.",why:"Jeden z głównych silników many — build regularnie używa cooldownów."},
+    {slot:"Pierścień 2",name:"Vulpine's Aspect",effect:"Podczas działania Bariery zyskujesz 25 podstawowego zasobu na sekundę.",why:"Pancerz Lodu zapewnia Barierę, więc to drugi mocny filar pod spamowanie Pioruna Kulistego."},
+    {slot:"Laska 2H",name:"Storm Splitter's Aspect",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"Nasz legendarny zamiennik za Insight — wzmacnia Ball Lightning bez zmiany sposobu gry."}
+  ];
+  sebaAspectsView.innerHTML='<div class="build-meta">Seba Endgame · Starter 0 unikatów</div><div class="aspect-tree">'+sebaStarterAspects.map(it=>`<article class="aspect-card"><div class="aspect-head"><div class="aspect-slot">${it.slot}</div></div><div class="aspect-body"><div class="aspect-name">${it.name}</div><div class="seba-aspect-effect">${it.effect}</div><div class="seba-aspect-why"><strong>Dlaczego:</strong> ${it.why}</div></div></article>`).join('')+'</div>';
+}
+const sebaAspectStyle=document.createElement('style');
+sebaAspectStyle.textContent='.seba-aspect-effect{margin-top:7px;color:#d7cdc5;font-size:.83rem;font-weight:800;line-height:1.42}.seba-aspect-why{margin-top:7px;color:#a99d95;font-size:.79rem;line-height:1.4}.seba-aspect-why strong{color:#d9c7b8}';
+document.head.appendChild(sebaAspectStyle);
