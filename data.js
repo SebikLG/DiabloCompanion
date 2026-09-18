@@ -26,9 +26,9 @@ const aspectsData=[
 {n:6,slot:"Spodnie",name:"Aspekt Kowadła Glynna",source:"Losowy łup",dungeon:false},
 {n:9,slot:"Buty",name:"Aspekt Okrawanego Mięsa",source:"Losowy łup",dungeon:false},
 {n:3,slot:"Amulet",name:"Piekielnie Dowódczy Aspekt",source:"Losowy łup",dungeon:false},
-{n:1,slot:"Pierścień 1",name:"Aspekt Smugi Cienia",source:"Podziemia: Ul · Scosglen",dungeon:true},
+{n:1,slot:"Pierścień 1",name:"Aspekt Smugi Cienia",source:"Losowy łup",dungeon:false},
 {n:4,slot:"Pierścień 2",name:"Aspekt Oszalałej Agresji",source:"Losowy łup",dungeon:false},
-{n:2,slot:"Broń",name:"Aspekt Reanimacji",source:"Podziemia: Knieja Aldura · Scosglen",dungeon:true}
+{n:2,slot:"Broń",name:"Aspekt Reanimacji",source:"Losowy łup",dungeon:false}
 ];
 const earlyAspectsView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="aspects"]');
 if(earlyAspectsView){earlyAspectsView.querySelectorAll('.build-meta,.aspect-note').forEach(el=>el.remove());}
