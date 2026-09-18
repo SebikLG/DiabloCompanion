@@ -211,3 +211,8 @@ if(sebaAspectsView){
 const sebaAspectStyle=document.createElement('style');
 sebaAspectStyle.textContent='.seba-aspect-effect{margin-top:7px;color:#d7cdc5;font-size:.83rem;font-weight:800;line-height:1.42}.seba-aspect-why{margin-top:7px;color:#a99d95;font-size:.79rem;line-height:1.4}.seba-aspect-why strong{color:#d9c7b8}';
 document.head.appendChild(sebaAspectStyle);
+
+
+const sebaAquaStyle=document.createElement('style');
+sebaAquaStyle.textContent='[data-profile-panel="seba-endgame"] .seba-gear-head,[data-profile-panel="seba-endgame"] .aspect-head{background:#bff4f1;border-bottom-color:#68c9c4;color:#102927}[data-profile-panel="seba-endgame"] .seba-gear-aspect{color:#2e6d69}[data-profile-panel="seba-endgame"] .seba-gear-tab.active{border-color:#49b8b3;background:#173331;color:#c9fffb;box-shadow:0 0 0 1px rgba(73,184,179,.18) inset}[data-profile-panel="seba-endgame"] .seba-affix-title{color:#59d3cd}[data-profile-panel="seba-endgame"] .seba-affix span{border-color:#3b8d89;color:#9ef0eb;background:#16302f}.profilebtn[data-profile="seba-endgame"].active{border-color:#49b8b3;background:#173331;color:#c9fffb;box-shadow:0 0 0 1px rgba(73,184,179,.18) inset}';
+document.head.appendChild(sebaAquaStyle);
