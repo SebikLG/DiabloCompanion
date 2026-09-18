@@ -177,21 +177,62 @@ document.head.appendChild(sebaGearStyle);
 const sebaGearOnlyView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="gear"]');
 if(sebaGearOnlyView){
   const starterGearOnly=[
-    {slot:"Hełm",affixes:["Redukcja czasu odnowienia","Inteligencja","Maksymalne zdrowie","Regeneracja many"]},
-    {slot:"Napierśnik",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"]},
-    {slot:"Rękawice",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Inteligencja"]},
-    {slot:"Spodnie",affixes:["Inteligencja","Maksymalne zdrowie","Pancerz","Regeneracja many"]},
-    {slot:"Buty",affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego"]},
-    {slot:"Amulet",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń od Błyskawic","Inteligencja"]},
-    {slot:"Pierścień 1",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"]},
-    {slot:"Pierścień 2",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"]},
-    {slot:"Laska 2H",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
+    {slot:"Hełm",affixes:["Redukcja czasu odnowienia","Inteligencja","Maksymalne zdrowie","Regeneracja many"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Napierśnik",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Rękawice",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Spodnie",affixes:["Inteligencja","Maksymalne zdrowie","Pancerz","Regeneracja many"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Buty",affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Amulet",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń od Błyskawic","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Pierścień 1",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Pierścień 2",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
+    {slot:"Laska 2H",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"],ga:[],mw:[],temper:null,socket:null}
   ];
   const starterPanel=sebaGearOnlyView.querySelector('[data-seba-gear-panel="starter"]');
   if(starterPanel){
-    starterPanel.innerHTML='<div class="seba-gear-list">'+starterGearOnly.map(it=>`<article class="seba-gear-card"><div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div></div><div class="seba-gear-body">${it.affixes.length?`<div class="seba-affix-title">Afiksy</div><div class="seba-affixes">${it.affixes.map((a,i)=>`<div class="seba-affix"><span>${i+1}</span>${a}</div>`).join('')}</div>`:'<div class="seba-affix-pending">Afiksy uzupełnimy w kroku 2 z Mobalytics.</div>'}</div></article>`).join('')+'</div>';
+    const pending='Do uzupełnienia z aktualnego wariantu Lurkina';
+    starterPanel.innerHTML=
+      '<div class="seba-item-note">★ = preferowany Greater Affix · <span class="seba-mw-key">pomarańczowy</span> = cel doskonalenia</div>'+
+      '<div class="seba-gear-list">'+starterGearOnly.map(it=>`
+        <article class="seba-gear-card seba-full-item-card">
+          <div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div></div>
+          <div class="seba-gear-body">
+            <div class="seba-affix-title">Afiksy</div>
+            <div class="seba-affixes">
+              ${it.affixes.map((a,i)=>`<div class="seba-affix ${it.mw.includes(i)?'mw-target':''}"><span>${i+1}</span><div>${it.ga.includes(i)?'<b class="seba-ga-star">★</b>':''}${a}</div></div>`).join('')}
+            </div>
+            <div class="seba-detail-box seba-ga-box"><div class="seba-detail-label">Greater Affix</div><div class="seba-detail-value">${it.ga.length?it.ga.map(i=>it.affixes[i]).join(' · '):pending}</div></div>
+            <div class="seba-detail-box seba-mw-box"><div class="seba-detail-label">Doskonalenie</div><div class="seba-detail-value">${it.mw.length?it.mw.map(i=>it.affixes[i]).join(' · '):pending}</div></div>
+            <div class="seba-detail-box seba-temper-box"><div class="seba-detail-label">Hartowanie</div><div class="seba-detail-value">${it.temper||pending}</div></div>
+            <div class="seba-detail-box seba-socket-box"><div class="seba-detail-label">Klejnoty / Runy</div><div class="seba-detail-value">${it.socket||pending}</div></div>
+          </div>
+        </article>`).join('')+
+      '</div>';
   }
 }
+const sebaFullItemStyle=document.createElement('style');
+sebaFullItemStyle.textContent=`
+[data-profile-panel="seba-endgame"] .seba-item-note{margin:0 2px 13px;color:#9f948c;font-size:.76rem;line-height:1.4}
+[data-profile-panel="seba-endgame"] .seba-mw-key{color:#ef8b36}
+[data-profile-panel="seba-endgame"] .seba-full-item-card .seba-affix{grid-template-columns:25px minmax(0,1fr)}
+[data-profile-panel="seba-endgame"] .seba-full-item-card .seba-affix.mw-target{border-color:#8a572f;background:#1d1510}
+[data-profile-panel="seba-endgame"] .seba-full-item-card .seba-affix.mw-target>div{color:#ef8b36}
+[data-profile-panel="seba-endgame"] .seba-ga-star{color:#f5c467;margin-right:6px}
+[data-profile-panel="seba-endgame"] .seba-detail-box{margin-top:10px;border-radius:13px;padding:11px 12px;border:1px solid #44515a;background:#13181c}
+[data-profile-panel="seba-endgame"] .seba-detail-label{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin-bottom:5px;color:#79b9b6}
+[data-profile-panel="seba-endgame"] .seba-detail-value{font-size:.84rem;line-height:1.35;color:#dcebea}
+[data-profile-panel="seba-endgame"] .seba-ga-box{border-color:#6c613e;background:#1c1a12}
+[data-profile-panel="seba-endgame"] .seba-ga-box .seba-detail-label{color:#f5c467}
+[data-profile-panel="seba-endgame"] .seba-mw-box{border-color:#7a4d2f;background:#201711}
+[data-profile-panel="seba-endgame"] .seba-mw-box .seba-detail-label,[data-profile-panel="seba-endgame"] .seba-mw-box .seba-detail-value{color:#ef9b54}
+[data-profile-panel="seba-endgame"] .seba-temper-box{border-color:#7a4d2f;background:#201711}
+[data-profile-panel="seba-endgame"] .seba-temper-box .seba-detail-label{color:#d97935}
+[data-profile-panel="seba-endgame"] .seba-temper-box .seba-detail-value{color:#ffd7b6}
+[data-profile-panel="seba-endgame"] .seba-socket-box{border-color:#445363;background:#131820}
+[data-profile-panel="seba-endgame"] .seba-socket-box .seba-detail-label{color:#9fc4e8}
+[data-profile-panel="seba-endgame"] .seba-socket-box .seba-detail-value{color:#dcecff}
+`;
+document.head.appendChild(sebaFullItemStyle);
+
 
 const sebaAspectsView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="aspects"]');
 if(sebaAspectsView){
