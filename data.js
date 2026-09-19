@@ -343,21 +343,74 @@ document.head.appendChild(sebaGearStyle);
 const sebaGearOnlyView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="gear"]');
 if(sebaGearOnlyView){
   const starterGearOnly=[
-    {slot:"Hełm",affixes:["Redukcja czasu odnowienia","Inteligencja","Maksymalne zdrowie","Regeneracja many"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Napierśnik",affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Rękawice",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Spodnie",affixes:["Inteligencja","Maksymalne zdrowie","Pancerz","Regeneracja many"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Buty",affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Amulet",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń od Błyskawic","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Pierścień 1",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Pierścień 2",affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],ga:[],mw:[],temper:null,socket:null},
-    {slot:"Laska 2H",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"],ga:[],mw:[],temper:null,socket:null}
+    {
+      slot:"Hełm",
+      affixes:["Redukcja czasu odnowienia","Inteligencja","Maksymalne zdrowie","Regeneracja many"],
+      ga:[0],mw:[0],
+      temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
+      socket:"Runy: Neo + Que"
+    },
+    {
+      slot:"Napierśnik",
+      affixes:["Maksymalne zdrowie","Szybkość ataku","Generowanie zasobu","Regeneracja many"],
+      ga:[2],mw:[2],
+      temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
+      socket:"Runy: Cir + Qua"
+    },
+    {
+      slot:"Rękawice",
+      affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Inteligencja"],
+      ga:[2],mw:[2],
+      temper:"Ofensywne: Obrażenia od Błyskawic (Elemental Finesse – Day)",
+      socket:"Brak"
+    },
+    {
+      slot:"Spodnie",
+      affixes:["Inteligencja","Maksymalne zdrowie","Pancerz","Regeneracja many"],
+      ga:[3],mw:[3],
+      temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
+      socket:"2× Topaz — +150 Inteligencji każdy"
+    },
+    {
+      slot:"Buty",
+      affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego","Maksymalna liczba ładunków Uniku"],
+      ga:[2],mw:[2],
+      temper:"Mobilność: Szybkość ruchu (Natural Motion)",
+      socket:"Brak"
+    },
+    {
+      slot:"Amulet",
+      affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń od Błyskawic","Inteligencja"],
+      ga:[2],mw:[2],
+      temper:"Mobilność: Szybkość ruchu (Natural Motion)",
+      socket:"Odprysk Kłamstw"
+    },
+    {
+      slot:"Pierścień 1",
+      affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],
+      ga:[1],mw:[1],
+      temper:"Zasób: Redukcja kosztu zasobu (Worldly Stability)",
+      socket:"Odprysk Czarnego Kamienia Dusz"
+    },
+    {
+      slot:"Pierścień 2",
+      affixes:["Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń od Błyskawic","Mnożnik obrażeń od trafień krytycznych","Inteligencja"],
+      ga:[1],mw:[1],
+      temper:"Zasób: Szczęśliwy traf — do 15% szansy na przywrócenie podstawowego zasobu (Worldly Stability)",
+      socket:"Odprysk Cierpienia"
+    },
+    {
+      slot:"Laska 2H",
+      affixes:["Szybkość ataku","Szansa na trafienie krytyczne","Obrażenia broni","Wszystkie współczynniki"],
+      ga:[0],mw:[0],
+      temper:"Broń: Szansa na trafienie krytyczne (Worldly Destruction)",
+      socket:"2× Topaz — +32% mnożnika obrażeń od Błyskawic każdy"
+    }
   ];
   const starterPanel=sebaGearOnlyView.querySelector('[data-seba-gear-panel="starter"]');
   if(starterPanel){
-    const pending='Do uzupełnienia z aktualnego wariantu Lurkina';
     starterPanel.innerHTML=
-      '<div class="seba-item-note">★ = preferowany Greater Affix · <span class="seba-mw-key">pomarańczowy</span> = cel doskonalenia</div>'+
+      '<div class="seba-item-note">★ = mój preferowany Greater Affix · <span class="seba-mw-key">pomarańczowy</span> = mój cel doskonalenia</div>'+
       '<div class="seba-gear-list">'+starterGearOnly.map(it=>`
         <article class="seba-gear-card seba-full-item-card">
           <div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div></div>
@@ -366,10 +419,10 @@ if(sebaGearOnlyView){
             <div class="seba-affixes">
               ${it.affixes.map((a,i)=>`<div class="seba-affix ${it.mw.includes(i)?'mw-target':''}"><span>${i+1}</span><div>${it.ga.includes(i)?'<b class="seba-ga-star">★</b>':''}${a}</div></div>`).join('')}
             </div>
-            <div class="seba-detail-box seba-ga-box"><div class="seba-detail-label">Greater Affix</div><div class="seba-detail-value">${it.ga.length?it.ga.map(i=>it.affixes[i]).join(' · '):pending}</div></div>
-            <div class="seba-detail-box seba-mw-box"><div class="seba-detail-label">Doskonalenie</div><div class="seba-detail-value">${it.mw.length?it.mw.map(i=>it.affixes[i]).join(' · '):pending}</div></div>
-            <div class="seba-detail-box seba-temper-box"><div class="seba-detail-label">Hartowanie</div><div class="seba-detail-value">${it.temper||pending}</div></div>
-            <div class="seba-detail-box seba-socket-box"><div class="seba-detail-label">Klejnoty / Runy</div><div class="seba-detail-value">${it.socket||pending}</div></div>
+            <div class="seba-detail-box seba-ga-box"><div class="seba-detail-label">Greater Affix</div><div class="seba-detail-value">${it.ga.map(i=>it.affixes[i]).join(' · ')}</div></div>
+            <div class="seba-detail-box seba-mw-box"><div class="seba-detail-label">Doskonalenie</div><div class="seba-detail-value">${it.mw.map(i=>it.affixes[i]).join(' · ')}</div></div>
+            <div class="seba-detail-box seba-temper-box"><div class="seba-detail-label">Hartowanie</div><div class="seba-detail-value">${it.temper}</div></div>
+            <div class="seba-detail-box seba-socket-box"><div class="seba-detail-label">Klejnoty / Runy</div><div class="seba-detail-value">${it.socket}</div></div>
           </div>
         </article>`).join('')+
       '</div>';
