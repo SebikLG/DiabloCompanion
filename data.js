@@ -133,9 +133,9 @@ const earlyParagonView=document.querySelector('[data-profile-panel="kasia-early"
 const paragonBoards=[
 {name:"Tablica startowa",glyph:"Wojownik",src:"assets/paragony/Tablica01.jpg"},
 {name:"Przywódca Kultu",glyph:"Odrodzicielstwo",src:"assets/paragony/Tablica02.jpg"},
-{name:"Trupożerstwo",glyph:"Esencja",src:null},
-{name:"Zapach Śmierci",glyph:"Dominacja",src:null},
-{name:"Uwiąd",glyph:"Mag",src:null}
+{name:"Trupożerstwo",glyph:"Esencja",src:"assets/paragony/Tablica03.png"},
+{name:"Zapach Śmierci",glyph:"Dominacja",src:"assets/paragony/Tablica04.png"},
+{name:"Uwiąd",glyph:"Mag",src:"assets/paragony/Tablica05.png"}
 ];
 if(earlyParagonView){
   earlyParagonView.innerHTML='<div class="paragon-tree">'+paragonBoards.map(it=>`<article class="paragon-card"><div class="paragon-head"><div class="paragon-title">${it.name}</div><div class="paragon-glyph">Glif: ${it.glyph}</div></div>${it.src?`<button class="paragon-image-button" type="button" data-src="${it.src}" data-alt="${it.name} — glif ${it.glyph}" aria-label="Otwórz ${it.name} na pełnym ekranie"><img class="paragon-image" src="${it.src}" alt="${it.name} — glif ${it.glyph}"></button>`:''}</article>`).join('')+'</div>';
