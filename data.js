@@ -194,7 +194,15 @@ if(sebaParagonView){
         <button class="seba-gear-tab" type="button" data-seba-paragon="mythic">Mythic</button>
       </div>
       <div class="seba-paragon-panel active" data-seba-paragon-panel="starter">
-        <article class="seba-empty"><strong>Starter</strong><br>Plansze Paragonu do uzupełnienia.</article>
+        <div class="paragon-tree">
+          <article class="paragon-card">
+            <div class="paragon-head">
+              <div class="paragon-title">Tablica startowa</div>
+              <div class="paragon-glyph">Glif: Unleash</div>
+            </div>
+            <div class="seba-paragon-image-pending">Screen planszy dodamy za chwilę.</div>
+          </article>
+        </div>
       </div>
       <div class="seba-paragon-panel" data-seba-paragon-panel="ancestral">
         <article class="seba-empty"><strong>Ancestral</strong><br>Plansze Paragonu do uzupełnienia.</article>
@@ -221,6 +229,7 @@ sebaParagonStyle.textContent=`
 [data-profile-panel="seba-endgame"] .seba-paragon-wrap{max-width:760px;margin:0 auto}
 [data-profile-panel="seba-endgame"] .seba-paragon-panel{display:none}
 [data-profile-panel="seba-endgame"] .seba-paragon-panel.active{display:block}
+[data-profile-panel="seba-endgame"] .seba-paragon-image-pending{padding:18px 14px;color:#8f8580;font-size:.8rem;line-height:1.35;text-align:center;background:#0b0a0a}
 `;
 document.head.appendChild(sebaParagonStyle);
 
