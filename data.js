@@ -198,9 +198,33 @@ if(sebaParagonView){
           <article class="paragon-card">
             <div class="paragon-head">
               <div class="paragon-title">Tablica startowa</div>
-              <div class="paragon-glyph">Glif: Unleash</div>
+              <div class="paragon-glyph">Glif: Wyzwolenie</div>
             </div>
-            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/Sebastart01.jpg" data-alt="Tablica startowa — glif Unleash" aria-label="Otwórz Tablicę startową na pełnym ekranie"><img class="paragon-image" src="assets/paragony/Sebastart01.jpg" alt="Tablica startowa — glif Unleash"></button>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/Sebastart01.jpg" data-alt="Tablica startowa — glif Wyzwolenie" aria-label="Otwórz Tablicę startową na pełnym ekranie"><img class="paragon-image" src="assets/paragony/Sebastart01.jpg" alt="Tablica startowa — glif Wyzwolenie"></button>
+          </article>
+          <article class="paragon-card">
+            <div class="paragon-head">
+              <div class="paragon-title">Statyczny Impuls</div>
+            </div>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/sebastarte02.jpg" data-alt="Statyczny Impuls" aria-label="Otwórz planszę Statyczny Impuls na pełnym ekranie"><img class="paragon-image" src="assets/paragony/sebastarte02.jpg" alt="Statyczny Impuls"></button>
+          </article>
+          <article class="paragon-card">
+            <div class="paragon-head">
+              <div class="paragon-title">Mistrzostwo Zaklinania</div>
+            </div>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/sebastarter03.jpg" data-alt="Mistrzostwo Zaklinania" aria-label="Otwórz planszę Mistrzostwo Zaklinania na pełnym ekranie"><img class="paragon-image" src="assets/paragony/sebastarter03.jpg" alt="Mistrzostwo Zaklinania"></button>
+          </article>
+          <article class="paragon-card">
+            <div class="paragon-head">
+              <div class="paragon-title">Lodowy Los</div>
+            </div>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/sebastarter04.jpg" data-alt="Lodowy Los" aria-label="Otwórz planszę Lodowy Los na pełnym ekranie"><img class="paragon-image" src="assets/paragony/sebastarter04.jpg" alt="Lodowy Los"></button>
+          </article>
+          <article class="paragon-card">
+            <div class="paragon-head">
+              <div class="paragon-title">Gorejące Ciepło</div>
+            </div>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/sebastarter05.jpg" data-alt="Gorejące Ciepło" aria-label="Otwórz planszę Gorejące Ciepło na pełnym ekranie"><img class="paragon-image" src="assets/paragony/sebastarter05.jpg" alt="Gorejące Ciepło"></button>
           </article>
         </div>
       </div>
