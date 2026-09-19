@@ -182,6 +182,48 @@ if(earlyParagonView){
   viewport.addEventListener('pointerup',()=>{const now=Date.now();if(now-lastTap<280&&pointers.size===0){scale=scale>1?1:2.5;tx=0;ty=0;render();}lastTap=now;});
 }
 
+
+const sebaParagonView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="merc"]');
+if(sebaParagonView){
+  sebaParagonView.innerHTML=`
+    <div class="seba-paragon-wrap">
+      <div class="build-meta">Seba Endgame · Paragony</div>
+      <div class="seba-gear-tabs" role="tablist" aria-label="Wariant paragonów">
+        <button class="seba-gear-tab active" type="button" data-seba-paragon="starter">Starter</button>
+        <button class="seba-gear-tab" type="button" data-seba-paragon="ancestral">Ancestral</button>
+        <button class="seba-gear-tab" type="button" data-seba-paragon="mythic">Mythic</button>
+      </div>
+      <div class="seba-paragon-panel active" data-seba-paragon-panel="starter">
+        <article class="seba-empty"><strong>Starter</strong><br>Plansze Paragonu do uzupełnienia.</article>
+      </div>
+      <div class="seba-paragon-panel" data-seba-paragon-panel="ancestral">
+        <article class="seba-empty"><strong>Ancestral</strong><br>Plansze Paragonu do uzupełnienia.</article>
+      </div>
+      <div class="seba-paragon-panel" data-seba-paragon-panel="mythic">
+        <article class="seba-empty"><strong>Mythic</strong><br>Plansze Paragonu do uzupełnienia.</article>
+      </div>
+    </div>`;
+  const tabs=sebaParagonView.querySelectorAll('[data-seba-paragon]');
+  const panels=sebaParagonView.querySelectorAll('[data-seba-paragon-panel]');
+  const openSebaParagon=name=>{
+    tabs.forEach(b=>b.classList.toggle('active',b.dataset.sebaParagon===name));
+    panels.forEach(p=>p.classList.toggle('active',p.dataset.sebaParagonPanel===name));
+    try{localStorage.setItem('diablo-seba-paragon-variant',name)}catch(e){}
+  };
+  tabs.forEach(b=>b.addEventListener('click',()=>openSebaParagon(b.dataset.sebaParagon)));
+  try{
+    const saved=localStorage.getItem('diablo-seba-paragon-variant');
+    if(['starter','ancestral','mythic'].includes(saved))openSebaParagon(saved);
+  }catch(e){}
+}
+const sebaParagonStyle=document.createElement('style');
+sebaParagonStyle.textContent=`
+[data-profile-panel="seba-endgame"] .seba-paragon-wrap{max-width:760px;margin:0 auto}
+[data-profile-panel="seba-endgame"] .seba-paragon-panel{display:none}
+[data-profile-panel="seba-endgame"] .seba-paragon-panel.active{display:block}
+`;
+document.head.appendChild(sebaParagonStyle);
+
 const earlyEndgameView=document.querySelector('[data-profile-panel="kasia-early"] [data-tab-view="transition"]');
 const endgameNav=document.querySelector('.navbtn[data-tab="transition"]');
 const infoNav=document.querySelector('.navbtn[data-tab="sources"]');
