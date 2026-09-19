@@ -92,9 +92,9 @@ const sebaTalismansView=document.querySelector('[data-profile-panel="seba-endgam
 if(sebaTalismansView){
   const sebaTalismans=[
     {
-      name:"Phoba Dzikiej Błyskawicy",
-      type:"Talizman zestawowy · Dziki Piorun Caina",
-      affixes:["Rangi umiejętności Porażenia"]
+      name:"Zestaw Dzikiego Pioruna Caina",
+      type:"Zestaw talizmanów",
+      affixes:["5 części: średnio 505% więcej obrażeń (6,05×)"]
     },
     {
       name:"Legendarna Pieczęć Horadrimów",
