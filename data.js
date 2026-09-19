@@ -8,6 +8,49 @@ const skillsData=[
 ["Rozdarcie","1/15",[["Inexorable Reaper","Rozdarcie staje się również umiejętnością Mobilności i zamiast zwykłego użycia wykonujesz <strong>doskok do przodu, aby zaatakować</strong>."],["Cost Reduction","Koszt Esencji Rozdarcia zostaje zmniejszony o <strong>4</strong>."]]],
 ["Wybuch Zwłok","1/15",[["Essence Generation","Użycie Wybuchu Zwłok generuje <strong>15 Esencji</strong>."],["Corpse Efficiency","Zwłoki zużyte przez Wybuch Zwłok mogą zostać zużyte <strong>1 dodatkowy raz</strong>."]]]
 ];
+
+const sebaSkillsView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="skills"]');
+if(sebaSkillsView){
+  const sebaSkillsData=[
+    ["Piorun Kulisty","15/15",[
+      ["Orbitalny",""],
+      ["Wiele pocisków",""],
+      ["Energia Trzaskająca",""]
+    ]],
+    ["Hydra","1/15",[
+      ["Redukcja czasu odnowienia",""],
+      ["Leczenie",""],
+      ["Mroźna Hydra",""]
+    ]],
+    ["Pancerz Lodu","15/15",[
+      ["Redukcja czasu odnowienia",""],
+      ["Premia do czasu trwania",""],
+      ["Wieczna Zmarzlina",""]
+    ]],
+    ["Teleportacja","1/15",[
+      ["Zaciekłość",""],
+      ["Szybkość ruchu",""],
+      ["Płomień",""]
+    ]],
+    ["Inferno","1/15",[
+      ["Redukcja czasu odnowienia",""],
+      ["Życiowa Spirala",""],
+      ["Przytłoczenie",""]
+    ]],
+    ["Chowaniec","15/15",[
+      ["Szybki jak Błyskawica",""],
+      ["Szarża",""],
+      ["Efekt dodatkowy",""]
+    ]],
+    ["Zamarznięta Kula","15/15",[
+      ["Roztrzaskana Ścieżka",""],
+      ["Bariera",""],
+      ["Obrażenia eksplozji",""]
+    ]]
+  ];
+  sebaSkillsView.innerHTML='<div class="build-meta">Seba Endgame · Ball Lightning Zeus S15 · 84 / 84 punktów</div><div class="skill-tree"><div class="skill-summary"><strong>Łącznie wydane punkty</strong><span class="skill-total">84 / 84</span></div>'+sebaSkillsData.map(([name,rank,ups])=>`<article class="skill-card"><div class="skill-card-head"><div class="skill-card-title">${name}</div><span class="rank-badge">${rank}</span></div><div class="upgrade-list">${ups.map(([n,d])=>`<div class="upgrade-card"><div class="upgrade-head"><div class="upgrade-name">${n}</div><span class="upgrade-rank">1/1</span></div>${d?`<div class="upgrade-desc">${d}</div>`:''}</div>`).join('')}</div></article>`).join('')+'</div>';
+}
+
 const itemsData=[
 {n:7,name:"Hełm",aff:["Maksymalne zdrowie","Pancerz","Inteligencja","Esencja na sekundę"],ga:[],mw:[],temper:"Maksymalna liczba kumulacji Animuszu",socket:"2× Topaz"},
 {n:8,name:"Napierśnik",aff:["Maksymalne zdrowie","Inteligencja","Odporność na wszystkie żywioły","Pancerz"],ga:[0],mw:[],temper:"Maksymalna liczba kumulacji Animuszu",socket:"Runy: Nagu + Wat"},
