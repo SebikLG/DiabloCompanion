@@ -44,6 +44,40 @@ const earlyTalismansView=document.querySelector('[data-profile-panel="kasia-earl
 if(earlyTalismansView){
   earlyTalismansView.innerHTML='<div class="talisman-tree">'+talismansData.map(it=>`<article class="talisman-card"><div class="talisman-head"><div class="talisman-name">${it.name}</div></div><div class="talisman-bonus">${it.bonus}</div></article>`).join('')+'</div>';
 }
+
+const sebaTalismansView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="extras"]');
+if(sebaTalismansView){
+  const sebaTalismans=[
+    {
+      name:"Phoba Dzikiej Błyskawicy",
+      type:"Talizman zestawowy · Dziki Piorun Caina",
+      affixes:["Rangi umiejętności Porażenia"]
+    },
+    {
+      name:"Legendarna Pieczęć Horadrimów",
+      type:"Pieczęć",
+      affixes:["+1 miejsce na talizman","Obrażenia umiejętności Porażenia","Obrażenia od trafień krytycznych"]
+    },
+    {
+      name:"Talizman Wygnanego Lorda",
+      type:"Talizman unikatowy",
+      affixes:["Rangi umiejętności Porażenia"]
+    }
+  ];
+  sebaTalismansView.innerHTML='<div class="seba-talisman-wrap"><div class="build-meta">Seba Endgame · Talizmany</div><div class="seba-talisman-list">'+sebaTalismans.map(it=>`<article class="talisman-card seba-talisman-card"><div class="talisman-head"><div class="talisman-name">${it.name}</div><div class="seba-talisman-type">${it.type}</div></div><div class="seba-talisman-affixes">${it.affixes.map((a,i)=>`<div class="seba-talisman-affix"><span>${i+1}</span><div>${a}</div></div>`).join('')}</div></article>`).join('')+'</div></div>';
+}
+const sebaTalismanStyle=document.createElement('style');
+sebaTalismanStyle.textContent=`
+[data-profile-panel="seba-endgame"] .seba-talisman-wrap{max-width:760px;margin:0 auto}
+[data-profile-panel="seba-endgame"] .seba-talisman-list{display:grid;gap:14px}
+[data-profile-panel="seba-endgame"] .seba-talisman-card .talisman-head{background:#1d4648!important;border-bottom-color:#2f6f72!important;color:#d8f4f2!important}
+[data-profile-panel="seba-endgame"] .seba-talisman-type{margin-top:4px;color:#8fc9c7;font-size:.76rem;line-height:1.25}
+[data-profile-panel="seba-endgame"] .seba-talisman-affixes{display:grid;gap:8px;padding:13px}
+[data-profile-panel="seba-endgame"] .seba-talisman-affix{display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;align-items:center;background:#171511;border:1px solid #403a33;border-radius:11px;padding:9px 10px;color:#efe7df;font-size:.84rem}
+[data-profile-panel="seba-endgame"] .seba-talisman-affix span{width:24px;height:24px;border-radius:7px;background:#142729;border:1px solid #356a6c;color:#9fd2cf;display:grid;place-items:center;font-size:.7rem;font-weight:600}
+`;
+document.head.appendChild(sebaTalismanStyle);
+
 const extrasNav=document.querySelector('.navbtn[data-tab="extras"]');
 if(extrasNav){extrasNav.innerHTML='<b>✧</b>Talizmany';}
 const mercNav=document.querySelector('.navbtn[data-tab="merc"]');
