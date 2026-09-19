@@ -200,7 +200,7 @@ if(sebaParagonView){
               <div class="paragon-title">Tablica startowa</div>
               <div class="paragon-glyph">Glif: Unleash</div>
             </div>
-            <div class="seba-paragon-image-pending">Screen planszy dodamy za chwilę.</div>
+            <button class="paragon-image-button seba-paragon-image-button" type="button" data-src="assets/paragony/Sebastart01.jpg" data-alt="Tablica startowa — glif Unleash" aria-label="Otwórz Tablicę startową na pełnym ekranie"><img class="paragon-image" src="assets/paragony/Sebastart01.jpg" alt="Tablica startowa — glif Unleash"></button>
           </article>
         </div>
       </div>
@@ -211,6 +211,17 @@ if(sebaParagonView){
         <article class="seba-empty"><strong>Mythic</strong><br>Plansze Paragonu do uzupełnienia.</article>
       </div>
     </div>`;
+  const sebaParagonThumbs=sebaParagonView.querySelectorAll('.seba-paragon-image-button');
+  const sharedParagonOverlay=document.querySelector('.paragon-lightbox');
+  if(sharedParagonOverlay){
+    const sharedParagonImg=sharedParagonOverlay.querySelector('.paragon-lightbox-img');
+    sebaParagonThumbs.forEach(button=>button.addEventListener('click',()=>{
+      sharedParagonImg.src=button.dataset.src;
+      sharedParagonImg.alt=button.dataset.alt;
+      sharedParagonImg.style.transform='translate(-50%,-50%) translate(0px,0px) scale(1)';
+      sharedParagonOverlay.classList.add('open');
+    }));
+  }
   const tabs=sebaParagonView.querySelectorAll('[data-seba-paragon]');
   const panels=sebaParagonView.querySelectorAll('[data-seba-paragon-panel]');
   const openSebaParagon=name=>{
