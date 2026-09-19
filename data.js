@@ -283,6 +283,29 @@ if(earlySoulSplintersView){
   ];
   earlySoulSplintersView.innerHTML='<div class="soul-wrap"><div class="build-meta">Kasia Early Endgame · Odpryski Duszy do biżuterii</div><div class="soul-note">Stały zestaw po 70. poziomie. Nie pokazujemy tutaj Odprysku Zła z Planów Wojennych.</div><div class="soul-grid">'+soulSplinters.map(it=>`<article class="soul-card"><div class="soul-head"><div class="soul-name">${it.name}</div><div class="soul-sub">${it.note}</div></div><div class="soul-body"><div class="soul-effect">${it.effect}</div><div class="soul-why"><strong>Dlaczego:</strong> ${it.why}</div></div></article>`).join('')+'</div></div>';
 }
+
+const sebaSoulSplintersView=document.querySelector('[data-profile-panel="seba-endgame"] [data-tab-view="sources"]');
+if(sebaSoulSplintersView){
+  const sebaSoulSplinters=[
+    {
+      name:"Odprysk Cierpienia",
+      note:"Odporność na Ogień: +4375",
+      effect:"Zyskujesz 20%[+] premii do szybkości ataku i szansy na trafienie krytyczne, ale koszty podstawowego zasobu są zwiększone o 30%."
+    },
+    {
+      name:"Odprysk Czarnego Kamienia Dusz",
+      note:"Wszystkie współczynniki: +50",
+      effect:"Zabijanie wrogów powoduje pochłonięcie duszy na 10 sek. Każda dusza zwiększa zadawane obrażenia o 2,5%[x], ale zwiększa otrzymywane obrażenia o 1%. Efekt kumuluje się do 200 razy, ale nie odświeża czasu trwania."
+    },
+    {
+      name:"Odprysk Kłamstw",
+      note:"Odporność na Zimno: +4375",
+      effect:"Zyskujesz 100% premii do zdobywanego złota i materiałów rzemieślniczych oraz 25% premii do doświadczenia, ale stale wpływają na ciebie Osłabienie i Odsłonięcie."
+    }
+  ];
+  sebaSoulSplintersView.innerHTML='<div class="soul-wrap"><div class="build-meta">Seba Endgame · Odpryski Duszy</div><div class="soul-grid">'+sebaSoulSplinters.map(it=>`<article class="soul-card"><div class="soul-head"><div class="soul-name">${it.name}</div><div class="soul-sub">${it.note}</div></div><div class="soul-body"><div class="soul-effect">${it.effect}</div></div></article>`).join('')+'</div></div>';
+}
+
 const soulStyle=document.createElement('style');
 soulStyle.textContent='.soul-wrap{max-width:760px;margin:0 auto}.soul-note{margin:0 2px 13px;color:#9f948c;font-size:.77rem;line-height:1.4}.soul-grid{display:grid;gap:14px}.soul-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.soul-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.soul-name{font-size:.96rem;font-weight:600;line-height:1.25}.soul-sub{margin-top:4px;font-size:.75rem;font-weight:600;color:#6c5642}.soul-body{padding:13px 14px}.soul-effect{color:#e8dfd8;font-size:.84rem;line-height:1.45}.soul-why{margin-top:8px;color:#a99d95;font-size:.79rem;line-height:1.42}.soul-why strong{color:#d9c7b8;font-weight:600}';
 document.head.appendChild(soulStyle);
