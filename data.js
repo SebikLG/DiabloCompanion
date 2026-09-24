@@ -352,8 +352,8 @@ if(sebaGearOnlyView){
     },
     {
       slot:"Napierśnik",
-      affixes:["Maksymalne zdrowie","Szybkość ataku","Generowanie zasobu","Regeneracja many"],
-      ga:[2],mw:[2],
+      affixes:["Regeneracja many","Inteligencja","Maksymalne zdrowie","Pancerz"],
+      ga:[0],mw:[0],
       temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
       socket:"Runy: Cir + Qua"
     },
@@ -373,7 +373,7 @@ if(sebaGearOnlyView){
     },
     {
       slot:"Buty",
-      affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego","Maksymalna liczba ładunków Uniku"],
+      affixes:["Inteligencja","Szybkość ruchu","Rangi Pioruna Kulistego"],
       ga:[2],mw:[2],
       temper:"Mobilność: Szybkość ruchu (Natural Motion)",
       socket:"Brak"
@@ -401,7 +401,7 @@ if(sebaGearOnlyView){
     },
     {
       slot:"Laska 2H",
-      affixes:["Szybkość ataku","Szansa na trafienie krytyczne","Obrażenia broni","Wszystkie współczynniki"],
+      affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"],
       ga:[0],mw:[0],
       temper:"Broń: Szansa na trafienie krytyczne (Worldly Destruction)",
       socket:"2× Topaz — +32% mnożnika obrażeń od Błyskawic każdy"
