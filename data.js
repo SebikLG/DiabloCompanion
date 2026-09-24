@@ -528,3 +528,113 @@ if(sebaSoulSplintersView){
 const soulStyle=document.createElement('style');
 soulStyle.textContent='.soul-wrap{max-width:760px;margin:0 auto}.soul-note{margin:0 2px 13px;color:#9f948c;font-size:.77rem;line-height:1.4}.soul-grid{display:grid;gap:14px}.soul-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}.soul-head{padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}.soul-name{font-size:.96rem;font-weight:600;line-height:1.25}.soul-sub{margin-top:4px;font-size:.75rem;font-weight:600;color:#6c5642}.soul-body{padding:13px 14px}.soul-effect{color:#e8dfd8;font-size:.84rem;line-height:1.45}.soul-why{margin-top:8px;color:#a99d95;font-size:.79rem;line-height:1.42}.soul-why strong{color:#d9c7b8;font-weight:600}';
 document.head.appendChild(soulStyle);
+
+
+/* Seba — Piekielne Hordy */
+const sebaHordesProfile=document.querySelector('[data-profile-panel="seba-endgame"]');
+if(sebaHordesProfile){
+  const hordesView=document.createElement('section');
+  hordesView.className='view';
+  hordesView.dataset.tabView='hordes';
+  hordesView.innerHTML=`
+    <div class="hordes-wrap">
+      <div class="build-meta">Seba Endgame · Piekielne Hordy</div>
+      <div class="hordes-rule">
+        <strong>Najprostsza zasada:</strong> wybierz kierunek (Skupiska / Biesy / Piekielni), a potem wzmacniaj ten sam typ. 
+        Przy remisie bierz opcję wyżej na liście. Wieże Dusz zwykle omijaj.
+      </div>
+
+      <section class="hordes-tier hordes-tier-s">
+        <div class="hordes-tier-head"><span>S</span><strong>S Tier</strong></div>
+        <div class="hordes-list">
+          <div>Fala Chaosu z Goblinami</div>
+          <div>Eterowe Gobliny <small>— szczególnie wcześnie</small></div>
+          <div>Kolosalne Biesy</div>
+          <div>Biesowe Legiony</div>
+          <div>Niezrównane Hordy</div>
+          <div>Tętniące Skupiska</div>
+          <div>Skupione Skupiska</div>
+          <div>Wybuchające Skupiska</div>
+        </div>
+      </section>
+
+      <section class="hordes-tier hordes-tier-a">
+        <div class="hordes-tier-head"><span>A</span><strong>A Tier</strong></div>
+        <div class="hordes-list">
+          <div>Nadmuchane Skupiska</div>
+          <div>Piekielne Skupiska</div>
+          <div>Niezrównani Elitarni Wrogowie</div>
+          <div>Napierający Elitarni Wrogowie</div>
+          <div>Nieustępliwi Elitarni Wrogowie</div>
+          <div>Przywołani Piekielni</div>
+          <div>Przyczajeni Piekielni</div>
+          <div>Meteorytowi Piekielni</div>
+        </div>
+      </section>
+
+      <section class="hordes-tier hordes-tier-b">
+        <div class="hordes-tier-head"><span>B</span><strong>B Tier</strong></div>
+        <div class="hordes-list">
+          <div>Prześladujący Diabeł <small>— lepszy w późniejszych falach</small></div>
+          <div>Żarłoczne Skupiska</div>
+          <div>Palący Deszcz</div>
+          <div>Gniew Piekła</div>
+          <div>Zakotwiczone Skupiska</div>
+        </div>
+      </section>
+
+      <section class="hordes-tier hordes-tier-c">
+        <div class="hordes-tier-head"><span>C</span><strong>C Tier</strong></div>
+        <div class="hordes-list">
+          <div>Drogocenne Wieże</div>
+          <div>Hołubione Wieże</div>
+          <div>Upragnione Wieże</div>
+          <div>Zachłanne Wieże</div>
+        </div>
+      </section>
+
+      <section class="hordes-tier hordes-tier-d">
+        <div class="hordes-tier-head"><span>D</span><strong>D Tier</strong></div>
+        <div class="hordes-list">
+          <div>Wysysające Wieże</div>
+          <div>Powstające Wieże</div>
+        </div>
+      </section>
+
+      <div class="hordes-foot">
+        <strong>Synergia ponad samą literą:</strong> jeżeli pierwsze wybory poszły w Skupiska, wzmacniaj Skupiska; jeżeli w Biesy — wzmacniaj Biesy; jeżeli w Piekielnych — wzmacniaj Piekielnych.
+      </div>
+    </div>`;
+  sebaHordesProfile.appendChild(hordesView);
+}
+
+const hordesNav=document.querySelector('.bottomnav');
+if(hordesNav && !hordesNav.querySelector('[data-tab="hordes"]')){
+  const btn=document.createElement('button');
+  btn.className='navbtn seba-only-nav';
+  btn.dataset.tab='hordes';
+  btn.innerHTML='<b>♨</b>Piekielne Hordy';
+  btn.style.display='none';
+  hordesNav.appendChild(btn);
+}
+
+const hordesStyle=document.createElement('style');
+hordesStyle.textContent=`
+[data-profile-panel="seba-endgame"] .hordes-wrap{max-width:760px;margin:0 auto;display:grid;gap:14px}
+[data-profile-panel="seba-endgame"] .hordes-rule,[data-profile-panel="seba-endgame"] .hordes-foot{background:#13191a;border:1px solid #2f5f62;border-radius:14px;padding:12px 13px;color:#cfe7e5;font-size:.82rem;line-height:1.45}
+[data-profile-panel="seba-endgame"] .hordes-rule strong,[data-profile-panel="seba-endgame"] .hordes-foot strong{color:#dff6f4}
+[data-profile-panel="seba-endgame"] .hordes-tier{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+[data-profile-panel="seba-endgame"] .hordes-tier-head{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#1d4648;border-bottom:1px solid #2f6f72;color:#d8f4f2}
+[data-profile-panel="seba-endgame"] .hordes-tier-head span{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#132d2f;border:1px solid #397f82;font-weight:800}
+[data-profile-panel="seba-endgame"] .hordes-tier-head strong{font-size:.96rem}
+[data-profile-panel="seba-endgame"] .hordes-list{display:grid;gap:7px;padding:11px 12px 13px}
+[data-profile-panel="seba-endgame"] .hordes-list>div{background:#171511;border:1px solid #403a33;border-radius:10px;padding:9px 10px;color:#eee7df;font-size:.84rem;line-height:1.32}
+[data-profile-panel="seba-endgame"] .hordes-list small{color:#9f948c;font-size:.75rem}
+[data-profile-panel="seba-endgame"] .hordes-tier-s .hordes-tier-head span{border-color:#77b57d}
+[data-profile-panel="seba-endgame"] .hordes-tier-a .hordes-tier-head span{border-color:#a7b96f}
+[data-profile-panel="seba-endgame"] .hordes-tier-b .hordes-tier-head span{border-color:#b99c6f}
+[data-profile-panel="seba-endgame"] .hordes-tier-c .hordes-tier-head span{border-color:#9c8170}
+[data-profile-panel="seba-endgame"] .hordes-tier-d .hordes-tier-head span{border-color:#8b6666}
+.navbtn[data-tab="hordes"]{flex-basis:92px}
+`;
+document.head.appendChild(hordesStyle);
