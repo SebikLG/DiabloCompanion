@@ -311,7 +311,7 @@ if(sebaGearView){
     {slot:"Amulet",aspect:"Aspekt Wyczekujący",effect:"Umiejętności Mistrzostwa zyskują 40%[x] obrażeń za każdą sekundę aktywności.",why:"Krążące Pioruny Kuliste pozostają aktywne, więc aspekt skaluje dokładnie naszą główną umiejętność.",affixes:[]},
     {slot:"Pierścień 1",aspect:"Aspekt Genialny",effect:"Użycie umiejętności z czasem odnowienia zapewnia 30 regeneracji many na 4 sek.",why:"Jeden z głównych silników many — build regularnie używa Teleportu, Pancerza Lodu i innych cooldownów.",affixes:[]},
     {slot:"Pierścień 2",aspect:"Aspekt Lisi",effect:"Podczas działania Bariery zyskujesz 25 podstawowego zasobu na sekundę.",why:"Pancerz Lodu zapewnia Barierę, więc dostajemy drugi mocny filar pod spamowanie Pioruna Kulistego.",affixes:[]},
-    {slot:"Laska 2H",aspect:"Aspekt Burzątnący",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"To nasz legendarny zamiennik za Insight — bezpośrednio wzmacnia Ball Lightning bez zmiany sposobu gry.",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
+    {slot:"Różdżka",aspect:"Aspekt Burzątnący",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"To nasz legendarny zamiennik za Insight — bezpośrednio wzmacnia Ball Lightning bez zmiany sposobu gry.",affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"]}
   ];
   const renderSebaStarter=()=>'<div class="seba-gear-list">'+sebaStarterGear.map(it=>`<article class="seba-gear-card"><div class="seba-gear-head"><div class="seba-gear-slot">${it.slot}</div><div class="seba-gear-aspect">${it.aspect}</div></div><div class="seba-gear-body"><div class="seba-gear-effect">${it.effect}</div><div class="seba-gear-why"><strong>Dlaczego:</strong> ${it.why}</div>${it.affixes.length?`<div class="seba-affix-title">Afiksy</div><div class="seba-affixes">${it.affixes.map((a,i)=>`<div class="seba-affix"><span>${i+1}</span>${a}</div>`).join('')}</div>`:'<div class="seba-affix-pending">Afiksy uzupełnimy w kroku 2 z Mobalytics.</div>'}</div></article>`).join('')+'</div>';
   sebaGearView.innerHTML=`<div class="seba-gear-wrap">
@@ -400,11 +400,11 @@ if(sebaGearOnlyView){
       socket:"Odprysk Cierpienia"
     },
     {
-      slot:"Laska 2H",
+      slot:"Różdżka",
       affixes:["Mnożnik obrażeń od trafień krytycznych","Mnożnik wszystkich obrażeń","Inteligencja","Maksymalne zdrowie"],
       ga:[0],mw:[0],
       temper:"Broń: Szansa na trafienie krytyczne (Worldly Destruction)",
-      socket:"2× Topaz — +32% mnożnika obrażeń od Błyskawic każdy"
+      socket:"1× Topaz — +32% mnożnika obrażeń od Błyskawic"
     }
   ];
   const starterPanel=sebaGearOnlyView.querySelector('[data-seba-gear-panel="starter"]');
@@ -464,7 +464,7 @@ if(sebaAspectsView){
     {slot:"Amulet",name:"Aspekt Wyczekujący",effect:"Umiejętności Mistrzostwa zyskują 40%[x] obrażeń za każdą sekundę aktywności.",why:"Krążące Pioruny Kuliste pozostają aktywne, więc aspekt skaluje główną umiejętność."},
     {slot:"Pierścień 1",name:"Aspekt Genialny",effect:"Użycie umiejętności z czasem odnowienia zapewnia 30 regeneracji many na 4 sek.",why:"Jeden z głównych silników many — build regularnie używa cooldownów."},
     {slot:"Pierścień 2",name:"Aspekt Lisi",effect:"Podczas działania Bariery zyskujesz 25 podstawowego zasobu na sekundę.",why:"Pancerz Lodu zapewnia Barierę, więc to drugi mocny filar pod spamowanie Pioruna Kulistego."},
-    {slot:"Laska 2H",name:"Aspekt Burzątnący",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"Nasz legendarny zamiennik za Insight — wzmacnia Ball Lightning bez zmiany sposobu gry."}
+    {slot:"Różdżka",name:"Aspekt Burzątnący",effect:"Niekanalizowane umiejętności Porażenia zadają 45%[x] więcej obrażeń i mają 15% szansy na ponowne uruchomienie przy rzuceniu.",why:"Nasz legendarny zamiennik za Insight — wzmacnia Ball Lightning bez zmiany sposobu gry."}
   ];
   sebaAspectsView.innerHTML='<div class="build-meta">Seba Endgame · Starter 0 unikatów</div><div class="aspect-tree">'+sebaStarterAspects.map(it=>`<article class="aspect-card"><div class="aspect-head"><div class="aspect-slot">${it.slot}</div></div><div class="aspect-body"><div class="aspect-name">${it.name}</div><div class="seba-aspect-effect">${it.effect}</div><div class="seba-aspect-why"><strong>Dlaczego:</strong> ${it.why}</div></div></article>`).join('')+'</div>';
 }
