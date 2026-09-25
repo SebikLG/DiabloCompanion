@@ -532,6 +532,86 @@ document.head.appendChild(soulStyle);
 
 
 
+
+
+/* Kasia Unique Endgame — Talizmany */
+const kasiaUniqueTalismansView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="extras"]');
+if(kasiaUniqueTalismansView){
+  const kasiaUniqueBaseTalismans=[
+    {
+      name:"Spokój Czarnego Całunu",
+      type:"Zestaw talizmanów",
+      note:"Używaj pełnego zestawu 5 części. To odpowiednik zestawu używanego już w Early Endgame."
+    },
+    {
+      name:"Legendarna Pieczęć Horadrimów",
+      type:"Pieczęć",
+      note:"Tak jak w Early Endgame — zapewnia dodatkowe miejsce na talizman."
+    }
+  ];
+  const kasiaUniqueCharmPriority=[
+    {
+      n:1,
+      name:"Piec",
+      type:"Unikatowy talizman",
+      effect:"Zadajesz elitom o 75–100%[x] więcej obrażeń.",
+      note:"Główny i najważniejszy wybór w tym wariancie buildu."
+    },
+    {
+      n:2,
+      name:"Zuchwałość",
+      type:"Unikatowy talizman",
+      effect:"Leczenie ponad 100% zdrowia zapewnia barierę równą 80–100% nadmiarowego leczenia na 8 sek. Mikstury leczenia można pić przy pełnym zdrowiu.",
+      note:"Alternatywa dla Pieca, jeśli brakuje przeżywalności."
+    }
+  ];
+
+  kasiaUniqueTalismansView.innerHTML=
+    '<div class="kasia-unique-talisman-wrap">'+
+      '<div class="build-meta">Kasia Unique Endgame · Talizmany · End Game Warriors · Kay</div>'+
+      '<div class="talisman-section-title">Stała baza</div>'+
+      '<div class="talisman-tree">'+kasiaUniqueBaseTalismans.map(it=>`
+        <article class="talisman-card">
+          <div class="talisman-head">
+            <div class="talisman-name">${it.name}</div>
+            <div class="kasia-unique-talisman-type">${it.type}</div>
+          </div>
+          <div class="talisman-bonus">${it.note}</div>
+        </article>`).join('')+
+      '</div>'+
+      '<div class="talisman-section-title unique-priority-title">Priorytet unikatowego talizmanu</div>'+
+      '<div class="kasia-unique-priority-list">'+kasiaUniqueCharmPriority.map(it=>`
+        <article class="kasia-unique-priority-card">
+          <div class="kasia-unique-priority-head">
+            <span class="kasia-unique-priority-num">${it.n}</span>
+            <div>
+              <div class="kasia-unique-priority-name">${it.name}</div>
+              <div class="kasia-unique-talisman-type">${it.type}</div>
+            </div>
+          </div>
+          <div class="kasia-unique-priority-effect">${it.effect}</div>
+          <div class="kasia-unique-priority-note">${it.note}</div>
+        </article>`).join('')+
+      '</div>'+
+    '</div>';
+}
+const kasiaUniqueTalismanStyle=document.createElement('style');
+kasiaUniqueTalismanStyle.textContent=`
+[data-profile-panel="kasia-unique"] .kasia-unique-talisman-wrap{max-width:760px;margin:0 auto}
+[data-profile-panel="kasia-unique"] .talisman-section-title{margin:0 2px 10px;color:#f1e8e1;font-size:.9rem;font-weight:600}
+[data-profile-panel="kasia-unique"] .unique-priority-title{margin-top:18px}
+[data-profile-panel="kasia-unique"] .kasia-unique-talisman-type{margin-top:4px;color:#8f8580;font-size:.74rem;line-height:1.25}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-list{display:grid;gap:12px}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-head{display:flex;align-items:center;gap:11px;padding:13px 14px;background:#ffe8b5;border-bottom:1px solid #d8b873;color:#2a2118}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-num{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#3b291d;color:#ffe8b5;font-weight:600}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-name{font-size:.98rem;font-weight:600}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-head .kasia-unique-talisman-type{color:#73523c}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-effect{padding:12px 14px 6px;color:#efe7df;font-size:.85rem;line-height:1.42}
+[data-profile-panel="kasia-unique"] .kasia-unique-priority-note{padding:0 14px 13px;color:#a99d95;font-size:.79rem;line-height:1.4}
+`;
+document.head.appendChild(kasiaUniqueTalismanStyle);
+
 /* Kasia Unique Endgame — Itemy */
 const kasiaUniqueGearView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="gear"]');
 if(kasiaUniqueGearView){
