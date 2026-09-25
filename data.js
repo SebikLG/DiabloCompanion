@@ -534,6 +534,78 @@ document.head.appendChild(soulStyle);
 
 
 
+/* Kasia Unique Endgame — Start */
+const kasiaUniqueStartView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="start"]');
+if(kasiaUniqueStartView){
+  kasiaUniqueStartView.innerHTML=`
+    <div class="build-meta">Kasia Unique Endgame · End Game Warriors · Kay</div>
+    <div class="start-card">
+      <h2>Pasek umiejętności</h2>
+      <div class="skill-strip">
+        <div class="skill-slot">Armia Umarłych</div>
+        <div class="skill-slot">Szkieletowy Wojownik</div>
+        <div class="skill-slot">Szkieletowy Mag</div>
+        <div class="skill-slot">Mór</div>
+        <div class="skill-slot">Rozdarcie</div>
+        <div class="skill-slot">Golem</div>
+      </div>
+    </div>
+    <div class="rotation-card">
+      <h2>Rotacja bez kombinowania</h2>
+      <div class="rotation-list">
+        <div class="rotation-step">
+          <div class="rotation-num">1</div>
+          <div>
+            <div class="rotation-main">Rozdarcie — wejście do grupy albo szybkie przejście dalej.</div>
+            <div class="rotation-sub">W tym wariancie nadal pełni rolę umiejętności mobilności.</div>
+          </div>
+        </div>
+        <div class="rotation-step">
+          <div class="rotation-num">2</div>
+          <div>
+            <div class="rotation-main">Mór — rzuć w grupę przeciwników.</div>
+            <div class="rotation-sub">Whirlpool zbiera przeciwników w jednym miejscu, żeby sługi mogły szybciej ich zabić.</div>
+          </div>
+        </div>
+        <div class="rotation-step">
+          <div class="rotation-num">3</div>
+          <div>
+            <div class="rotation-main">Szkieletowy Wojownik — używaj aktywnej komendy, gdy jest gotowa.</div>
+            <div class="rotation-sub">Komenda wzmacnia Wojowników i daje Resolve.</div>
+          </div>
+        </div>
+        <div class="rotation-step">
+          <div class="rotation-num">4</div>
+          <div>
+            <div class="rotation-main">Szkieletowy Mag — używaj aktywnej komendy, gdy jest gotowa.</div>
+          </div>
+        </div>
+        <div class="rotation-step">
+          <div class="rotation-num">5</div>
+          <div>
+            <div class="rotation-main">Golem — używaj aktywnej komendy, gdy jest gotowa.</div>
+            <div class="rotation-sub">Komenda Golema daje dodatkowe wzmocnienie i zapewnia Nieustępliwość.</div>
+          </div>
+        </div>
+        <div class="rotation-step">
+          <div class="rotation-num">6</div>
+          <div>
+            <div class="rotation-main">Armia Umarłych — elita, boss albo duża grupa.</div>
+            <div class="rotation-sub">Po użyciu nadal naciskaj komendy Wojowników, Magów i Golema, gdy tylko wracają z odnowienia.</div>
+          </div>
+        </div>
+      </div>
+      <div class="kasia-unique-start-note"><strong>Zniedołężnienie i Żelazna Dziewica nie zajmują miejsca na pasku.</strong> Bryczesy Krwawego Księżyca pozwalają sługom nakładać te klątwy podczas walki.</div>
+    </div>`;
+}
+const kasiaUniqueStartStyle=document.createElement('style');
+kasiaUniqueStartStyle.textContent=`
+[data-profile-panel="kasia-unique"] .kasia-unique-start-note{max-width:760px;margin:12px 0 0;padding:11px 12px;border:1px solid #51483d;border-radius:12px;background:#171511;color:#b8aca3;font-size:.8rem;line-height:1.42}
+[data-profile-panel="kasia-unique"] .kasia-unique-start-note strong{color:#efe7df}
+`;
+document.head.appendChild(kasiaUniqueStartStyle);
+
+
 /* Kasia Unique Endgame — Skille */
 const kasiaUniqueSkillsView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="skills"]');
 if(kasiaUniqueSkillsView){
