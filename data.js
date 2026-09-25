@@ -534,20 +534,71 @@ document.head.appendChild(soulStyle);
 
 
 
+/* Kasia Unique Endgame — Skille */
+const kasiaUniqueSkillsView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="skills"]');
+if(kasiaUniqueSkillsView){
+  const kasiaUniqueSkillsData=[
+    ["Szkieletowy Mag","15/15",[
+      ["Coven","Maksymalna liczba przywołanych Szkieletowych Magów zostaje zwiększona o <strong>2</strong>."],
+      ["Critical Strike Chance","Zyskujesz dodatkowe <strong>5%[+]</strong> szansy na trafienie krytyczne przeciw wrogom zranionym przez Szkieletowych Magów."],
+      ["Ferocity, Resolve, or Overpower","Szkieletowi Magowie mają <strong>5%</strong> szans na zapewnienie 1 kumulacji Ferocity, Resolve albo Overpower przy każdym ataku — zależnie od tego, czy są odpowiednio typu Cień, Zimno lub Kość."]
+    ]],
+    ["Szkieletowy Wojownik","15/15",[
+      ["Litany of Death","Jeśli wszyscy Szkieletowi Wojownicy są już przywołani, umiejętność na krótko przywołuje Szkieletowego Kapłana. Kapłan wzmacnia sługi przez <strong>8 sek.</strong>, zwiększając ich szansę na trafienie krytyczne o <strong>15%[+]</strong> i lecząc je w tym czasie łącznie za <strong>100% maksymalnego zdrowia</strong>."],
+      ["Damage Bonus","Wydanie rozkazu Szkieletowym Wojownikom sprawia, że przez <strong>10 sek.</strong> zadają o <strong>25%[x]</strong> więcej obrażeń."],
+      ["Resolve","Wydanie rozkazu Szkieletowym Wojownikom zapewnia <strong>3 kumulacje Resolve</strong>."]
+    ]],
+    ["Mór","1/15",[
+      ["Whirlpool","Mór zadaje obrażenia od Zimna i Odmrożenia, a jego koszt Esencji zostaje zmniejszony o <strong>10</strong>. Skażony obszar przyciąga wrogów i co sekundę nakłada <strong>15% Wychłodzenia</strong>."],
+      ["Size Bonus","Rozmiar Moru zostaje zwiększony o <strong>35%</strong>."]
+    ]],
+    ["Golem","15/15",[
+      ["Gargantua","Przywołujesz większego Golema z aurą dowodzenia, która zwiększa szybkość używania umiejętności i szybkość ruchu pozostałych sług o <strong>20%[x]</strong>."],
+      ["Resolve, Overpower, or Ferocity","Wydanie rozkazu Golemowi zapewnia <strong>3 kumulacje</strong> Resolve, Overpower albo Ferocity — zależnie od tego, czy używasz odpowiednio Golema Kościanego, Krwawego lub Żelaznego."],
+      ["Unstoppable","Wydanie rozkazu Golemowi zapewnia ci również <strong>Nieustępliwość na 3 sek.</strong>."]
+    ]],
+    ["Zniedołężnienie","12/15",[
+      ["Life Tap","Zniedołężnienie staje się również umiejętnością Krwi. Trafienie wroga objętego Zniedołężnieniem leczy cię za <strong>10% maksymalnego zdrowia</strong>, najwyżej raz na sekundę. Wróg, który umrze pod jego wpływem, ma <strong>20%</strong> szans na utworzenie Kuli Krwi."],
+      ["Cooldown Reduction","<strong>Szczęśliwy Traf:</strong> trafienie wroga objętego Zniedołężnieniem ma do <strong>15%</strong> szans na skrócenie losowego aktywnego czasu odnowienia o <strong>1 sek.</strong>."],
+      ["Movement Speed","Każdy wróg objęty Zniedołężnieniem zwiększa twoją szybkość ruchu o <strong>2%[x]</strong>."]
+    ]],
+    ["Żelazna Dziewica","1/15",[
+      ["Execute and Fortify","Wrogowie objęci Żelazną Dziewicą mogą zostać <strong>straceni</strong>. Gdy wróg objęty Żelazną Dziewicą umiera, zyskujesz Fortyfikację równą <strong>5% maksymalnego zdrowia</strong>."],
+      ["Vulnerable","Wrogowie objęci Żelazną Dziewicą stają się <strong>Odsłonięci</strong>."],
+      ["Blood Maiden","Żelazna Dziewica staje się również umiejętnością Krwi. Wrogowie otrzymujący od niej obrażenia mają <strong>5%</strong> szans na utworzenie Kuli Krwi."]
+    ]],
+    ["Rozdarcie","1/15",[
+      ["Inexorable Reaper","Rozdarcie staje się również umiejętnością Mobilności i zamiast zwykłego użycia wykonujesz <strong>doskok do przodu, aby zaatakować</strong>."],
+      ["Cost Reduction","Koszt Esencji Rozdarcia zostaje zmniejszony o <strong>4</strong>."]
+    ]],
+    ["Armia Umarłych","1/15",[
+      ["Cooldown Reduction","Czas odnowienia Armii Umarłych zostaje skrócony o <strong>20 sek.</strong>."],
+      ["Unyielding Commander","Podczas działania Armii Umarłych twoje sługi otrzymują o <strong>90%</strong> mniej obrażeń i zadają o <strong>30%[x]</strong> więcej obrażeń."],
+      ["Corpse Generation","Armia Umarłych ma <strong>50%</strong> szans na utworzenie zwłok."]
+    ]]
+  ];
+  kasiaUniqueSkillsView.innerHTML=
+    '<div class="build-meta">Kasia Unique Endgame · End Game Warriors · Kay · 83 / 83 punktów</div>'+
+    '<div class="skill-tree"><div class="skill-summary"><strong>Łącznie wydane punkty</strong><span class="skill-total">83 / 83</span></div>'+
+    kasiaUniqueSkillsData.map(([name,rank,ups])=>`
+      <article class="skill-card">
+        <div class="skill-card-head"><div class="skill-card-title">${name}</div><span class="rank-badge">${rank}</span></div>
+        <div class="upgrade-list">${ups.map(([n,d])=>`
+          <div class="upgrade-card">
+            <div class="upgrade-head"><div class="upgrade-name">${n}</div><span class="upgrade-rank">1/1</span></div>
+            <div class="upgrade-desc">${d}</div>
+          </div>`).join('')}</div>
+      </article>`).join('')+
+    '</div>';
+}
+
+
 /* Kasia Unique Endgame — Talizmany */
 const kasiaUniqueTalismansView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="extras"]');
 if(kasiaUniqueTalismansView){
   const kasiaUniqueBaseTalismans=[
-    {
-      name:"Spokój Czarnego Całunu",
-      type:"Zestaw talizmanów",
-      note:"Używaj pełnego zestawu 5 części. To odpowiednik zestawu używanego już w Early Endgame."
-    },
-    {
-      name:"Legendarna Pieczęć Horadrimów",
-      type:"Pieczęć",
-      note:"Tak jak w Early Endgame — zapewnia dodatkowe miejsce na talizman."
-    }
+    "Spokój Czarnego Całunu",
+    "Legendarna Pieczęć Horadrimów"
   ];
   const kasiaUniqueCharmPriority=[
     {
@@ -570,13 +621,9 @@ if(kasiaUniqueTalismansView){
     '<div class="kasia-unique-talisman-wrap">'+
       '<div class="build-meta">Kasia Unique Endgame · Talizmany · End Game Warriors · Kay</div>'+
       '<div class="talisman-section-title">Stała baza</div>'+
-      '<div class="talisman-tree">'+kasiaUniqueBaseTalismans.map(it=>`
-        <article class="talisman-card">
-          <div class="talisman-head">
-            <div class="talisman-name">${it.name}</div>
-            <div class="kasia-unique-talisman-type">${it.type}</div>
-          </div>
-          <div class="talisman-bonus">${it.note}</div>
+      '<div class="talisman-tree">'+kasiaUniqueBaseTalismans.map(name=>`
+        <article class="talisman-card kasia-unique-base-talisman">
+          <div class="talisman-head"><div class="talisman-name">${name}</div></div>
         </article>`).join('')+
       '</div>'+
       '<div class="talisman-section-title unique-priority-title">Priorytet unikatowego talizmanu</div>'+
@@ -600,6 +647,7 @@ kasiaUniqueTalismanStyle.textContent=`
 [data-profile-panel="kasia-unique"] .kasia-unique-talisman-wrap{max-width:760px;margin:0 auto}
 [data-profile-panel="kasia-unique"] .talisman-section-title{margin:0 2px 10px;color:#f1e8e1;font-size:.9rem;font-weight:600}
 [data-profile-panel="kasia-unique"] .unique-priority-title{margin-top:18px}
+[data-profile-panel="kasia-unique"] .kasia-unique-base-talisman .talisman-head{border-bottom:0}
 [data-profile-panel="kasia-unique"] .kasia-unique-talisman-type{margin-top:4px;color:#8f8580;font-size:.74rem;line-height:1.25}
 [data-profile-panel="kasia-unique"] .kasia-unique-priority-list{display:grid;gap:12px}
 [data-profile-panel="kasia-unique"] .kasia-unique-priority-card{background:#151310;border:1px solid #51483d;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.28)}
@@ -611,6 +659,7 @@ kasiaUniqueTalismanStyle.textContent=`
 [data-profile-panel="kasia-unique"] .kasia-unique-priority-note{padding:0 14px 13px;color:#a99d95;font-size:.79rem;line-height:1.4}
 `;
 document.head.appendChild(kasiaUniqueTalismanStyle);
+
 
 /* Kasia Unique Endgame — Itemy */
 const kasiaUniqueGearView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="gear"]');
