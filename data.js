@@ -534,6 +534,47 @@ document.head.appendChild(soulStyle);
 
 
 
+/* Kasia Unique Endgame — Odpryski Duszy */
+const kasiaUniqueSoulView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="sources"]');
+if(kasiaUniqueSoulView){
+  const kasiaUniqueSoulSplinters=[
+    {
+      name:"Odprysk Bólu",
+      slot:"Amulet",
+      note:"Odporność na Truciznę: +4375",
+      effect:"Zyskujesz 25% redukcji obrażeń, ale tracisz 30% szybkości ruchu."
+    },
+    {
+      name:"Odprysk Cierpienia",
+      slot:"Pierścień 1",
+      note:"Odporność na Ogień: +4375",
+      effect:"Zyskujesz 20%[+] szybkości ataku i szansy na trafienie krytyczne, ale koszty podstawowego zasobu są zwiększone o 30%."
+    },
+    {
+      name:"Odprysk Piekielnego Ognia",
+      slot:"Pierścień 2",
+      note:"Odporność na wszystkie żywioły: +625",
+      effect:"Zadajesz o 50%[x] więcej obrażeń, ale tracisz 100% szansy na trafienie krytyczne."
+    }
+  ];
+  kasiaUniqueSoulView.innerHTML=
+    '<div class="soul-wrap">'+
+      '<div class="build-meta">Kasia Unique Endgame · Odpryski Duszy · End Game Warriors · Kay</div>'+
+      '<div class="soul-grid">'+kasiaUniqueSoulSplinters.map(it=>`
+        <article class="soul-card">
+          <div class="soul-head">
+            <div class="soul-name">${it.name}</div>
+            <div class="soul-sub">${it.slot} · ${it.note}</div>
+          </div>
+          <div class="soul-body">
+            <div class="soul-effect">${it.effect}</div>
+          </div>
+        </article>`).join('')+
+      '</div>'+
+    '</div>';
+}
+
+
 /* Kasia Unique Endgame — Start */
 const kasiaUniqueStartView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="start"]');
 if(kasiaUniqueStartView){
