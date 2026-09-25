@@ -530,6 +530,139 @@ soulStyle.textContent='.soul-wrap{max-width:760px;margin:0 auto}.soul-note{margi
 document.head.appendChild(soulStyle);
 
 
+
+
+/* Kasia Unique Endgame — Itemy */
+const kasiaUniqueGearView=document.querySelector('[data-profile-panel="kasia-unique"] [data-tab-view="gear"]');
+if(kasiaUniqueGearView){
+  const kasiaUniqueItems=[
+    {
+      slot:"Hełm",
+      itemName:"Podkorona",
+      kind:"unique",
+      aff:["Inteligencja","Rangi umiejętności Sług","Maksymalne zdrowie","Pancerz"],
+      ga:[1],mw:[1],
+      temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
+      socket:"2× Topaz — +150 Inteligencji każdy"
+    },
+    {
+      slot:"Napierśnik",
+      itemName:"Aspekt Niebiańskiej Siły",
+      kind:"aspect",
+      aff:["Maksymalne zdrowie","Inteligencja","Odporność na wszystkie żywioły","Pancerz"],
+      ga:[0],mw:[],
+      temper:"Defensywne: Maksymalna liczba kumulacji Animuszu (Worldly Endurance)",
+      socket:"Runy: Nagu + Wat"
+    },
+    {
+      slot:"Rękawice",
+      itemName:"Uścisk Śmierci",
+      kind:"unique",
+      aff:["Inteligencja","Rangi Szkieletowego Wojownika","Szansa na trafienie krytyczne","Mnożnik obrażeń od trafień krytycznych"],
+      ga:[2],mw:[2],
+      temper:"Ofensywne: Obrażenia umiejętności Przywołania (Profane Finesse)",
+      socket:"Brak"
+    },
+    {
+      slot:"Spodnie",
+      itemName:"Bryczesy Krwawego Księżyca",
+      kind:"unique",
+      aff:["Inteligencja","Mnożnik obrażeń od trafień krytycznych","Maksymalne zdrowie","Pancerz"],
+      ga:[1],mw:[1],
+      temper:"Defensywne: Maksymalne zdrowie (Worldly Endurance)",
+      socket:"Runy: Jah + Igni"
+    },
+    {
+      slot:"Buty",
+      itemName:"Aspekt Okrawanego Mięsa",
+      kind:"aspect",
+      aff:["Inteligencja","Szybkość ruchu","Pancerz","Esencja na sekundę"],
+      ga:[1],mw:[],
+      temper:"Mobilność: Szybkość ruchu (Natural Motion)",
+      socket:"Brak"
+    },
+    {
+      slot:"Amulet",
+      itemName:"Aspekt Reanimacji",
+      kind:"aspect",
+      aff:["Szansa na trafienie krytyczne","Mnożnik obrażeń zadawanych odsłoniętym celom","Mnożnik obrażeń Cienia","Aspekt Okrawanego Mięsa","Mnożnik obrażeń od trafień krytycznych"],
+      ga:[0],mw:[0],
+      temper:"Ofensywne: Obrażenia umiejętności Przywołania (Profane Finesse)",
+      socket:"Odprysk Bólu"
+    },
+    {
+      slot:"Pierścień 1",
+      itemName:"Piekielnie Dowódczy Aspekt",
+      kind:"aspect",
+      aff:["Szansa na trafienie krytyczne","Mnożnik obrażeń zadawanych odsłoniętym celom","Maksymalne zdrowie","Mnożnik obrażeń od trafień krytycznych"],
+      ga:[0],mw:[0],
+      temper:"Ofensywne: Obrażenia umiejętności Przywołania (Profane Finesse)",
+      socket:"Odprysk Cierpienia"
+    },
+    {
+      slot:"Pierścień 2",
+      itemName:"Pakt Kości",
+      kind:"unique",
+      aff:["Inteligencja","Mnożnik obrażeń od trafień krytycznych","Szansa na trafienie krytyczne","Mnożnik wszystkich obrażeń"],
+      ga:[2],mw:[2],
+      temper:"Ofensywne: Obrażenia umiejętności Przywołania (Profane Finesse)",
+      socket:"Odprysk Piekielnego Ognia"
+    },
+    {
+      slot:"Broń",
+      itemName:"Bezkrwawy Wrzask",
+      kind:"unique",
+      aff:["Minimalne obrażenia broni","Rangi umiejętności Ciemności","Mnożnik obrażeń od trafień krytycznych","Mnożnik obrażeń Cienia"],
+      ga:[1],mw:[1],
+      temper:"Broń: Szansa na trafienie krytyczne (Worldly Destruction)",
+      socket:"2× Ametyst — +32% mnożnika obrażeń Cienia każdy"
+    }
+  ];
+  kasiaUniqueGearView.innerHTML=
+    '<div class="build-meta">Kasia Unique Endgame · Itemy · End Game Warriors · Kay</div>'+
+    '<div class="item-note">Układ taki sam jak w Early Endgame. Pod każdym slotem widnieje docelowy aspekt albo unikat.</div>'+
+    '<div class="item-tree">'+kasiaUniqueItems.map(it=>{
+      const aff=it.aff.map((name,i)=>`<div class="affix-row ${it.mw.includes(i)?'mw-target':''}"><span class="affix-num">${i+1}</span><div class="affix-name">${it.ga.includes(i)?'<b class="ga-star">★</b>':''}${name}</div></div>`).join('');
+      const ga=it.ga.length?it.ga.map(i=>it.aff[i]).join(' · '):'Brak wskazanego priorytetu';
+      const mw=it.mw.length?it.mw.map(i=>it.aff[i]).join(' · '):'Brak wskazanego celu';
+      const socketLabel=it.socket&&it.socket.startsWith('Runy:')?'Runy':'Klejnoty / Runy';
+      const socket=it.socket&&it.socket.startsWith('Runy:')?it.socket.replace('Runy: ',''):it.socket;
+      return `<article class="item-card kasia-full-item-card kasia-unique-item-card">
+        <div class="item-head">
+          <div class="kasia-unique-item-heading">
+            <div class="item-title">${it.slot}</div>
+            <div class="kasia-unique-item-name ${it.kind}">${it.itemName}</div>
+          </div>
+        </div>
+        <div class="affix-list">${aff}</div>
+        <div class="kasia-detail-box kasia-ga-box"><div class="box-label">Greater Affix</div><div class="box-name">${ga}</div></div>
+        <div class="kasia-detail-box kasia-mw-box"><div class="box-label">Doskonalenie</div><div class="box-name">${mw}</div></div>
+        <div class="kasia-detail-box kasia-temper-box"><div class="box-label">Hartowanie</div><div class="box-name">${it.temper}</div></div>
+        <div class="kasia-detail-box kasia-socket-box"><div class="box-label">${socketLabel}</div><div class="box-name">${socket}</div></div>
+      </article>`;
+    }).join('')+'</div>';
+}
+const kasiaUniqueGearStyle=document.createElement('style');
+kasiaUniqueGearStyle.textContent=`
+[data-profile-panel="kasia-unique"] .kasia-unique-item-heading{min-width:0}
+[data-profile-panel="kasia-unique"] .kasia-unique-item-name{margin-top:5px;font-size:.84rem;font-weight:600;line-height:1.25}
+[data-profile-panel="kasia-unique"] .kasia-unique-item-name.aspect{color:#b96c2f}
+[data-profile-panel="kasia-unique"] .kasia-unique-item-name.unique{color:#9b66b3}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-detail-box{margin:0 13px 10px;border-radius:13px;padding:11px 12px;border:1px solid #51483d;background:#171511}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-ga-box{border-color:#6c613e;background:#1c1a12}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-ga-box .box-label{color:#f5c467}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-mw-box{border-color:#7a4d2f;background:#201711}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-mw-box .box-label,
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-mw-box .box-name{color:#ef9b54}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-temper-box{border-color:#7a4d2f;background:#201711}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-temper-box .box-label{color:#d97935}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-temper-box .box-name{color:#ffd7b6}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-socket-box{border-color:#445363;background:#131820;margin-bottom:13px}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-socket-box .box-label{color:#9fc4e8}
+[data-profile-panel="kasia-unique"] .kasia-full-item-card .kasia-socket-box .box-name{color:#dcecff}
+`;
+document.head.appendChild(kasiaUniqueGearStyle);
+
 /* Seba — Piekielne Hordy */
 const sebaHordesProfile=document.querySelector('[data-profile-panel="seba-endgame"]');
 if(sebaHordesProfile){
